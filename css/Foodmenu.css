@@ -5,12 +5,12 @@
 }
 
 body {
-    background: linear-gradient( rgba(0,0,0,0.85),rgba(0,0,0,0.65),rgba(0,0,0,0.35),rgba(0,0,0,0) ), 
-        url(images/backgroundmenu.jpg)no-repeat;
+    background: url(images/imagemenu2.jpg)repeat ;
     background-size: cover;
+    
     font-family: 'Roboto',sans-serif;
     overflow-x: hidden;
-    height: 800px;
+    
 }
 
 /*sroll start*/
@@ -221,7 +221,7 @@ ul li:hover ul li {
 
 .row {
     position:absolute;
-    top: 20%;
+    top: 30%;
     left: 45%;
     margin-right: -15px;
     margin-left: -15px;
