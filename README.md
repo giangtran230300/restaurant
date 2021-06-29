@@ -1,2 +1,2 @@
 # restaurant
-front-end restaurant website
+booking restaurant website
