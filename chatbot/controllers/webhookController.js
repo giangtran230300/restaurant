@@ -130,7 +130,7 @@ async function handlePostback(sender_psid, received_postback) {
   }
 
   //Send the message to acknowledge the postback
-  chatBotService.callSendAPI(sender_psid, response);
+  //chatBotService.callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API

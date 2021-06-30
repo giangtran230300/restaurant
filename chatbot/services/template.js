@@ -49,81 +49,36 @@ let templpateGetStartedButton = () => {
   return response;
 };
 
-let templpateMainMenu = () => {
-  let response = {
-    attachment: {
-      type: "template",
-      payload: {
-        template_type: "generic",
-        elements: [
-          {
-            title: "Our menu",
-            subtitle: "This is our menu for lunch and dinner.",
-            image_url: IMAGE_RESTAURANT_URL,
-            buttons: [
-              {
-                type: "postback",
-                title: "Dishes",
-                payload: "DISHES_MENU",
-              },
-              {
-                type: "postback",
-                title: "COMBO MENU",
-                payload: "COMBO_MENU",
-              },
-              {
-                type: "postback",
-                title: "Drink and Dessert",
-                payload: "DRINK_DESSERT",
-              },
-            ],
-          },
-          {
-            title: "TABLES AND ROOMS",
-            subtitle:
-              "Accomodates up to 250 customers, has tables for 2/4/6 people, private room and has great garden views.",
-            image_url: IMAGE_RESTAURANT_URL,
-            buttons: [
-              {
-                type: "web_url",
-                title: "VIEW ROOM",
-                url: `${process.env.WEBVIEW_URL}`,
-                webview_height_ratio: "full",
-              },
-            ],
-          },
-          {
-            title: "OUR SERVICES",
-            subtitle: "We provide services for your meal, organize events.",
-            image_url: IMAGE_RESTAURANT_URL,
-            buttons: [
-              {
-                type: "web_url",
-                title: "BIRTHDAY PARTY",
-                url: `${process.env.WEBVIEW_URL}`,
-                webview_height_ratio: "full",
-              },
-              {
-                type: "web_url",
-                title: "ANNIVERSARY",
-                url: `${process.env.WEBVIEW_URL}`,
-                webview_height_ratio: "full",
-              },
-              {
-                type: "web_url",
-                url: `${process.env.RESERVE_WEBVIEW_URL}`,
-                title: "Reserve service",
-                webview_height_ratio: "tall",
-                messenger_extensions: true,
-              },
-            ],
-          },
-        ],
+let templpateGetStartedButton = () => {
+    let response = {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [
+            {
+              title: "Welcome to Bes restaurant",
+              subtitle: "Tap a button to start.",
+              image_url: IMAGE_RESTAURANT_URL,
+              buttons: [
+                {
+                  type: "postback",
+                  title: "Restaurant menu",
+                  payload: "MAIN_MENU",
+                },
+                {
+                  "type": "web_url",
+                  "url": `${process.env.WEBVIEW_URL}`,
+                  "title": "Visit our website",
+                },
+              ],
+            },
+          ],
+        },
       },
-    },
+    };
+    return response;
   };
-  return response;
-};
 
 let templateDishesMenu = () => {
   let response = {
