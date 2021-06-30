@@ -165,14 +165,14 @@ async function callSendAPI(sender_psid, response) {
 }
 
 let messengerProfile = async (req, res) => {
-  // Construct the message body
-  let request_body = {
+   // Construct the message body
+   let request_body = {
     get_started: { payload: "GET_STARTED" },
     whitelisted_domains: ["https://bres-restaurant.herokuapp.com/"],
   };
 
   // Send the HTTP request to the Messenger Profile Platform
-  await request(
+  request(
     {
       uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
       qs: { access_token: PAGE_ACCESS_TOKEN },
@@ -182,7 +182,7 @@ let messengerProfile = async (req, res) => {
     (err, res, body) => {
       console.log(body);
       if (!err) {
-        console.log("Set up messenger profile success!");
+        console.log("Set up profile success!");
       } else {
         console.error("Unable to set up profile:" + err);
       }
@@ -196,33 +196,33 @@ let persistentMenu = async (req, res) => {
   // Construct the message body
   let request_body = {
     persistent_menu: [
-      {
-        locale: "default",
-        composer_input_disabled: false,
-        call_to_actions: [
-          {
-            type: "postback",
-            title: "Start conversation",
-            payload: "RESTART",
-          },
-          {
-            type: "postback",
-            title: "My reservation",
-            payload: "MANAGE_RESERVATION",
-          },
-          {
-            type: "postback",
-            title: "Talk to an agent",
-            payload: "CARE_HELP",
-          },
-          {
-            type: "web_url",
-            title: "Visit our website",
-            url: "https://bres-restaurant.herokuapp.com/", // change to Giang's when deployed
-          },
-        ],
-      },
-    ],
+        {
+          locale: "default",
+          composer_input_disabled: false,
+          call_to_actions: [
+            {
+              type: "postback",
+              title: "Start conversation",
+              payload: "RESTART",
+            },
+            {
+              type: "postback",
+              title: "My reservation",
+              payload: "MANAGE_RESERVATION",
+            },
+            {
+              type: "postback",
+              title: "Talk to an agent",
+              payload: "CARE_HELP",
+            },
+            {
+              type: "web_url",
+              title: "Visit our website",
+              url: "https://bres-restaurant.herokuapp.com/", // change to Giang's when deployed
+            },
+          ],
+        },
+      ],
   };
 
   // Send the HTTP request to the Messenger Profile Platform
@@ -236,15 +236,17 @@ let persistentMenu = async (req, res) => {
     (err, res, body) => {
       console.log(body);
       if (!err) {
-        console.log("Set up menu success!");
+        console.log("Set up persistent menu success!");
       } else {
-        console.error("Unable to set up menu:" + err);
+        console.error("Unable to set up persistent menu:" + err);
       }
     }
   );
 
-  return res.send("Set up menu seuccess!");
+  return res.send("Set up persistent menu seuccess!");
 };
+
+
 
 module.exports = {
   postWebhook: postWebhook,
