@@ -80,7 +80,8 @@ function handleReserve() {
             phoneNumber: $("#phoneNumber").val(),
             peopleNumber: $("#peopleNumber").val(),
             reserveDate: $("#reserveDate").val(),
-            reserveTime: $("#reserveTime").val()
+            reserveTime: $("#reserveTime").val(),
+            serviceChoose: $("#service").val()
         };
 
         if (!check) {

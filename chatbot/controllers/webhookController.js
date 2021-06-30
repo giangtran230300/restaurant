@@ -256,6 +256,7 @@ let handleReservationData = async (req, res) => {
         \nNumber of people: ${req.body.peopleNumber}
         \nReserve date: ${req.body.reserveDate}
         \nReserve time: ${req.body.reserveTime}
+        \mService: ${req.body.service}
         `,
     };
 
