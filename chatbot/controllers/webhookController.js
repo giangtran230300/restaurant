@@ -218,7 +218,7 @@ let persistentMenu = async (req, res) => {
             {
               type: "web_url",
               title: "Visit our website",
-              url: "https://bres-restaurant.herokuapp.com/", // change to Giang's when deployed
+              url: "https://bres-restaurant.herokuapp.com/", 
             },
           ],
         },
