@@ -15,7 +15,7 @@ let initRoutes = (app) => {
 
   router.post("/webhook/user-profile", webhookController.messengerProfile);
 
-  router.post("/persistent-menu", (req, res) => {
+  router.post("/webhook/persistent-menu", (req, res) => {
     // Construct the message body
     let request_body = {
       persistent_menu: [
