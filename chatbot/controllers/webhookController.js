@@ -117,9 +117,9 @@ async function handlePostback(sender_psid, received_postback) {
       await chatBotService.handleGetStarted(sender_psid);
       break;
 
-    case  "MANAGE_RESERVATION":
-        await chatBotService.manageReservation(sender_psid);
-        break;
+    case "MANAGE_RESERVATION":
+      await chatBotService.manageReservation(sender_psid);
+      break;
 
     case "CARE_HELP":
       await chatBotService.handleCareHelp(sender_psid);
@@ -204,7 +204,7 @@ let persistentMenu = async (req, res) => {
             type: "postback",
             title: "Start conversation",
             payload: "RESTART",
-          }, 
+          },
           {
             type: "postback",
             title: "My reservation",
@@ -218,7 +218,7 @@ let persistentMenu = async (req, res) => {
           {
             type: "web_url",
             title: "Visit our website",
-            url: "https://bres-restaurant.herokuapp.com/",
+            url: "https://bres-restaurant.herokuapp.com/", // change to Giang's when deployed
           },
         ],
       },
@@ -236,14 +236,14 @@ let persistentMenu = async (req, res) => {
     (err, res, body) => {
       console.log(body);
       if (!err) {
-        console.log("Set up persistent menu success!");
+        console.log("Set up menu success!");
       } else {
-        console.error("Unable to set up persistent menu:" + err);
+        console.error("Unable to set up menu:" + err);
       }
     }
   );
 
-  return res.send("Set up persistent menu seuccess!");
+  return res.send("Set up menu seuccess!");
 };
 
 module.exports = {
