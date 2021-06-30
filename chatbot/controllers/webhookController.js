@@ -112,14 +112,18 @@ async function handlePostback(sender_psid, received_postback) {
     //   break;
 
     // Chatbot start
-    //case "RESTART":
+    case "RESTART":
     case "GET_STARTED":
       await chatBotService.handleGetStarted(sender_psid);
       break;
 
-    // case "CARE_HELP":
-    //   await chatBotService.handleCareHelp(sender_psid);
-    //   break;
+    case  "MANAGE_RESERVATION":
+        await chatBotService.manageReservation(sender_psid);
+        break;
+
+    case "CARE_HELP":
+      await chatBotService.handleCareHelp(sender_psid);
+      break;
 
     default:
       response = { text: `Default message for ${payload}!` };
@@ -224,8 +228,7 @@ let persistentMenu = async (req, res) => {
   // Send the HTTP request to the Messenger Profile Platform
   await request(
     {
-      uri: `https://graph.facebook.com/v11.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
-      // uri: `https://graph.facebook.com/v10.0/me/messenger_profile`,
+      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: "POST",
       json: request_body,

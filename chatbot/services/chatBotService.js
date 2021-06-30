@@ -191,27 +191,27 @@ let handleGetStarted = (sender_psid) => {
 // };
 
 // // talk to agent, handover
-// let handleCareHelp = (sender_psid) => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       let response = {
-//         text: "Our agent will be online soon!"
-//       }
+let handleCareHelp = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = {
+        text: "Our agent will be online soon!"
+      }
 
-//       await callSendAPI(sender_psid, response);
-//       resolve("done");
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-// };
+      await callSendAPI(sender_psid, response);
+      resolve("done");
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 module.exports = {
   callSendAPI: callSendAPI,
   handleGetStarted: handleGetStarted,
   getUserName: getUserName,
 //   handleMainMenu: handleMainMenu,
-//   handleCareHelp: handleCareHelp,
+  handleCareHelp: handleCareHelp,
 //   handleDishesMenu: handleDishesMenu,
 //   handleComboMenu: handleComboMenu,
 //   handleDDMenu: handleDDMenu,
