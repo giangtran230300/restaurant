@@ -6,7 +6,7 @@ var router = express.Router();
 
 let initRoutes = (app) => {
     router.get('/', function (req, res) {
-        res.sendFile('Foodmenu.html', {root: './restaurant'})
+        res.sendFile('Foodmenu.html', {root: './chatbot/restaurant'})
     })
 
     // webhook routes
