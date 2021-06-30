@@ -138,57 +138,57 @@ let handleGetStarted = (sender_psid) => {
   });
 };
 
-// let handleMainMenu = (sender_psid) => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       let response = template.templpateMainMenu();
+let handleMainMenu = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = template.templpateMainMenu();
 
-//       await callSendAPI(sender_psid, response);
-//       resolve("done");
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-// };
+      await callSendAPI(sender_psid, response);
+      resolve("done");
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
-// let handleDishesMenu = (sender_psid) => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       let response = template.templateDishesMenu();
+let handleDishesMenu = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = template.templateDishesMenu();
 
-//       await callSendAPI(sender_psid, response);
-//       resolve("done");
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-// };
+      await callSendAPI(sender_psid, response);
+      resolve("done");
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
-// let handleComboMenu = (sender_psid) => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       let response = template.templateComboMenu();
+let handleComboMenu = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = template.templateComboMenu();
 
-//       await callSendAPI(sender_psid, response);
-//       resolve("done");
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-// };
+      await callSendAPI(sender_psid, response);
+      resolve("done");
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
-// let handleDDMenu = (sender_psid) => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       let response = template.templateDDMenu();
+let handleDDMenu = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = template.templateDDMenu();
 
-//       await callSendAPI(sender_psid, response);
-//       resolve("done");
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-// };
+      await callSendAPI(sender_psid, response);
+      resolve("done");
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 // // talk to agent, handover
 let handleCareHelp = (sender_psid) => {
@@ -206,13 +206,27 @@ let handleCareHelp = (sender_psid) => {
   });
 };
 
+let manageReservation= (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let response = {
+          text: "Update soon"
+        }
+  
+        await callSendAPI(sender_psid, response);
+        resolve("done");
+      } catch (e) {
+        reject(e);
+      }
+    });
+  };
 module.exports = {
   callSendAPI: callSendAPI,
   handleGetStarted: handleGetStarted,
   getUserName: getUserName,
-//   handleMainMenu: handleMainMenu,
+  handleMainMenu: handleMainMenu,
   handleCareHelp: handleCareHelp,
-//   handleDishesMenu: handleDishesMenu,
-//   handleComboMenu: handleComboMenu,
-//   handleDDMenu: handleDDMenu,
+  handleDishesMenu: handleDishesMenu,
+  handleComboMenu: handleComboMenu,
+  handleDDMenu: handleDDMenu,
 };
