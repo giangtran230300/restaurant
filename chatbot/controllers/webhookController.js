@@ -229,6 +229,7 @@ let persistentMenu = async (req, res) => {
   await request(
     {
       uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: "POST",
       json: request_body,
@@ -237,13 +238,13 @@ let persistentMenu = async (req, res) => {
       console.log(body);
       if (!err) {
         console.log("Set up persistent menu success!");
-        return res.send("Set up persistent menu success!");
       } else {
         console.error("Unable to set up persistent menu:" + err);
-        return res.send("Unable to set up persistent menu:" + err);
       }
     }
   );
+
+  return res.send("Set up persistent menu seuccess!");
 };
 
 
