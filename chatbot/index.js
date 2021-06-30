@@ -10,7 +10,7 @@ let app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
-// HTML here
+// JS here
 app.use(express.static('./chatbot/restaurant'));
 
 // routes
