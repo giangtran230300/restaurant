@@ -16,6 +16,10 @@ let initRoutes = (app) => {
   router.post("/webhook/user-profile", webhookController.messengerProfile);
   router.post("/webhook/persistent-menu", webhookController.persistentMenu);
 
+  router.get("/reserve", function (req, res) {
+    res.sendFile("reserve.html", { root: "./chatbot/restaurant" });
+  });
+
   return app.use("/", router);
 };
 

@@ -10,35 +10,42 @@ const IMAGE_SERVICE = "";
 const IMAGE_ROOM = "";
 
 let templpateGetStartedButton = () => {
-    let response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "Welcome to Bes restaurant",
-              subtitle: "Tap a button to start.",
-              image_url: IMAGE_RESTAURANT_URL,
-              buttons: [
-                {
-                  type: "postback",
-                  title: "Restaurant menu",
-                  payload: "MAIN_MENU",
-                },
-                {
-                  "type": "web_url",
-                  "url": `${process.env.WEBVIEW_URL}`,
-                  "title": "Visit our website",
-                },
-              ],
-            },
-          ],
-        },
+  let response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "generic",
+        elements: [
+          {
+            title: "Welcome to Bes restaurant",
+            subtitle: "Tap a button to start.",
+            image_url: IMAGE_RESTAURANT_URL,
+            buttons: [
+              {
+                type: "postback",
+                title: "Restaurant menu",
+                payload: "MAIN_MENU",
+              },
+              {
+                type: "web_url",
+                url: `${process.env.RESERVE_WEBVIEW_URL}`,
+                title: "Reserve now",
+                webview_height_ratio: "tall",
+                messenger_extensions: true,
+              },
+              {
+                type: "web_url",
+                url: `${process.env.WEBVIEW_URL}`,
+                title: "Visit our website",
+              },
+            ],
+          },
+        ],
       },
-    };
-    return response;
+    },
   };
+  return response;
+};
 
 let templpateMainMenu = () => {
   let response = {
@@ -102,7 +109,7 @@ let templpateMainMenu = () => {
               },
               {
                 type: "web_url",
-                url: `${process.env.WEBVIEW_URL}`,
+                url: `${process.env.RESERVE_WEBVIEW_URL}`,
                 title: "Reserve service",
                 webview_height_ratio: "tall",
                 messenger_extensions: true,
@@ -249,10 +256,49 @@ let templateDDMenu = () => {
   return response;
 };
 
+let templateManageReservation = () => {
+    let response = {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [
+            {
+              title: "Manage reservations",
+              subtitle: "Create/Update/Cancel",
+              image_url: IMAGE_MENU_DESSERT,
+              buttons: [
+                {
+                    type: "web_url",
+                    url: `${process.env.RESERVE_WEBVIEW_URL}`,
+                    title: "Reserve service",
+                    webview_height_ratio: "tall",
+                    messenger_extensions: true,
+                  },
+                  {
+                    type: "postback",
+                    title: "Update reservation",
+                    payload: "UPDATE_RESERVATION",
+                  },
+                  {
+                    type: "postback",
+                    title: "Cancel reservation",
+                    payload: "CANCEL_RESERVATION",
+                  },  
+              ],
+            },
+          ],
+        },
+      },
+    };
+    return response;
+  };
+
 module.exports = {
   templpateGetStartedButton: templpateGetStartedButton,
   templpateMainMenu: templpateMainMenu,
   templateDDMenu: templateDDMenu,
   templateComboMenu: templateComboMenu,
   templateDishesMenu: templateDishesMenu,
+  templateManageReservation: templateManageReservation,
 };

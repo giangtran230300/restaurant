@@ -1,0 +1,101 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reserve Service</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Load custom Javascript and CSS-->
+    <link rel="stylesheet" href="/style.css">
+    <script src="/js/reserve.js"></script>
+  </head>
+  <body>
+    <!-- <form action="/reserve-ajax" method="post" id="form-reserve"> -->
+    <div class="container fix-height">
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center mt-3">
+            <span class="title">Reserve Service</span>
+          </div>
+          <input type="text" id="psid" hidden />
+          <div class="form-group">
+            <label for="customerName">Name(<span style="color: red">*</span>):</label>
+            <input
+              type="text"
+              id="customerName"
+              class="form-control"
+            />
+            <div class="invalid-feedback">
+              Please fill out your name.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone number(<span style="color: red">*</span>):</label>
+            <input
+              type="text"
+              id="phoneNumber"
+              class="form-control"
+            />
+            <div class="invalid-feedback">
+              Please fill out your phone number.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="peopleNumber"
+              >Number of people (<span style="color: red">*</span>):</label
+            >
+            <input
+              type="text"
+              id="peopleNumber"
+              class="form-control"
+            />
+            <div class="invalid-feedback">
+              Please fill out your reserve time.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reserveDate"
+              >Reserve date (<span style="color: red">*</span>):</label
+            >
+            <input
+              type="date"
+              id="reserveDate"
+              class="form-control"
+              placeholder="dd/mm/yyyy"
+            />
+            <div class="invalid-feedback">
+              Please choose your reserve date.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reserveTime"
+              >Reserve time (<span style="color: red">*</span>):</label
+            >
+            <input
+              type="time"
+              id="reserveTime"
+              class="form-control"
+            />
+            <div class="invalid-feedback">
+              Please fill out your reserve time.
+            </div>
+          </div>
+          <!-- <div class="form-group">
+            <div class="dropdown">
+              <label for="service">Choose a service</label>
+                <select id="service">
+                  <option value="tableReserve">Reserve table</option>
+                  <option value="birthdayParty">Birthday Party</option>
+                  <option value="annyversaryParty">Anniversary</option>
+                </select>
+          </div> -->
+          <button class="btn btn-primary" id="btnReserve">RESERVE</button>
+        </div>
+      </div>
+    </div>
+  <!-- </form>  -->
+  </body>
+</html>

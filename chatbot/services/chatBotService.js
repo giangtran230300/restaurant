@@ -10,7 +10,6 @@ const VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 let callSendAPI = async (sender_psid, response) => {
- 
   // Construct the message body
   let request_body = {
     recipient: {
@@ -42,61 +41,64 @@ let callSendAPI = async (sender_psid, response) => {
 
 let sendTypingOn = (sender_psid) => {
   return new Promise((resolve, reject) => {
-      try {
-          let request_body = {
-              "recipient": {
-                  "id": sender_psid
-              },
-              "sender_action": "typing_on"
-          };
+    try {
+      let request_body = {
+        recipient: {
+          id: sender_psid,
+        },
+        sender_action: "typing_on",
+      };
 
-          let url = `https://graph.facebook.com/v6.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
-          request({
-              "uri": url,
-              "method": "POST",
-              "json": request_body
-
-          }, (err, res, body) => {
-              if (!err) {
-                  resolve("done!");
-              } else {
-                  reject("Unable to send message:" + err);
-              }
-          });
-
-      } catch (e) {
-          reject(e);
-      }
+      let url = `https://graph.facebook.com/v6.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
+      request(
+        {
+          uri: url,
+          method: "POST",
+          json: request_body,
+        },
+        (err, res, body) => {
+          if (!err) {
+            resolve("done!");
+          } else {
+            reject("Unable to send message:" + err);
+          }
+        }
+      );
+    } catch (e) {
+      reject(e);
+    }
   });
 };
 
 let markMessageRead = (sender_psid) => {
   return new Promise((resolve, reject) => {
-      try {
-          let request_body = {
-              "recipient": {
-                  "id": sender_psid
-              },
-              "sender_action": "mark_seen"
-          };
+    try {
+      let request_body = {
+        recipient: {
+          id: sender_psid,
+        },
+        sender_action: "mark_seen",
+      };
 
-          let url = `https://graph.facebook.com/v6.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
-          request({
-              "uri": url,
-              "method": "POST",
-              "json": request_body
-
-          }, (err, res, body) => {
-              if (!err) {
-                  resolve("done!");
-              } else {
-                  reject("Unable to send message:" + err);
-              }
-          });
-      } catch (e) {
-          reject(e);
-      }
-  })
+      let url = `https://graph.facebook.com/v6.0/me/messages?access_token=${PAGE_ACCESS_TOKEN}`;
+      request(
+        {
+          uri: url,
+          method: "POST",
+          json: request_body,
+        },
+        (err, res, body) => {
+          if (!err) {
+            resolve("done!");
+          } else {
+            reject("Unable to send message:" + err);
+          }
+        }
+      );
+    } catch (e) {
+      reject(e);
+    }
+  });
 };
 
 let getUserName = (sender_psid) => {
@@ -195,8 +197,8 @@ let handleCareHelp = (sender_psid) => {
   return new Promise(async (resolve, reject) => {
     try {
       let response = {
-        text: "Our agent will be online soon!"
-      }
+        text: "Our agent will be online soon!",
+      };
 
       await callSendAPI(sender_psid, response);
       resolve("done");
@@ -206,20 +208,18 @@ let handleCareHelp = (sender_psid) => {
   });
 };
 
-let manageReservation= (sender_psid) => {
-    return new Promise(async (resolve, reject) => {
-      try {
-        let response = {
-          text: "Update soon"
-        }
-  
-        await callSendAPI(sender_psid, response);
-        resolve("done");
-      } catch (e) {
-        reject(e);
-      }
-    });
-  };
+let manageReservation = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = template.templateManageReservation();
+
+      await callSendAPI(sender_psid, response);
+      resolve("done");
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   callSendAPI: callSendAPI,
   handleGetStarted: handleGetStarted,
