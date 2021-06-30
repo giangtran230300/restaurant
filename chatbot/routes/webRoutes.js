@@ -19,6 +19,7 @@ let initRoutes = (app) => {
   router.get("/reserve", function (req, res) {
     res.sendFile("reserve.html", { root: "./chatbot/restaurant" });
   });
+  router.post("/reserve-post", webhookController.handleReservationData);
 
   return app.use("/", router);
 };

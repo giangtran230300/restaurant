@@ -109,8 +109,8 @@ async function handlePostback(sender_psid, received_postback) {
     case "GET_STARTED":
       await chatBotService.handleGetStarted(sender_psid);
       break;
-    
-    // Manage reservation 
+
+    // Manage reservation
     case "MANAGE_RESERVATION":
       await chatBotService.manageReservation(sender_psid);
       break;
@@ -160,8 +160,8 @@ async function callSendAPI(sender_psid, response) {
 }
 
 let messengerProfile = async (req, res) => {
-   // Construct the message body
-   let request_body = {
+  // Construct the message body
+  let request_body = {
     get_started: { payload: "GET_STARTED" },
     whitelisted_domains: ["https://bres-restaurant.herokuapp.com/"],
   };
@@ -190,35 +190,35 @@ let messengerProfile = async (req, res) => {
 let persistentMenu = async (req, res) => {
   // Construct the message body
   let request_body = {
-    get_started: { payload: "GET_STARTED" },  
+    get_started: { payload: "GET_STARTED" },
     persistent_menu: [
-        {
-          locale: "default",
-          composer_input_disabled: false,
-          call_to_actions: [
-            {
-              type: "postback",
-              title: "Start conversation",
-              payload: "RESTART",
-            },
-            {
-              type: "postback",
-              title: "My reservation",
-              payload: "MANAGE_RESERVATION",
-            },
-            {
-              type: "postback",
-              title: "Talk to an agent",
-              payload: "CARE_HELP",
-            },
-            {
-              type: "web_url",
-              title: "Visit our website",
-              url: "https://bres-restaurant.herokuapp.com/", 
-            },
-          ],
-        },
-      ],
+      {
+        locale: "default",
+        composer_input_disabled: false,
+        call_to_actions: [
+          {
+            type: "postback",
+            title: "Start conversation",
+            payload: "RESTART",
+          },
+          {
+            type: "postback",
+            title: "My reservation",
+            payload: "MANAGE_RESERVATION",
+          },
+          {
+            type: "postback",
+            title: "Talk to an agent",
+            payload: "CARE_HELP",
+          },
+          {
+            type: "web_url",
+            title: "Visit our website",
+            url: "https://bres-restaurant.herokuapp.com/",
+          },
+        ],
+      },
+    ],
   };
 
   // Send the HTTP request to the Messenger Profile Platform
@@ -243,6 +243,32 @@ let persistentMenu = async (req, res) => {
   return res.send("Set up persistent menu seuccess!");
 };
 
+let handleReservationData = async (req, res) => {
+  try {
+    let response1 = {
+      text: "You have made a reservation. We are waiting to see you <3",
+    };
+
+    let response2 = {
+      text: `---Reservation information---
+        \nName: ${req.body.customerName}
+        \nPhone number: ${req.body.phoneNumber}
+        `,
+    };
+
+    await chatBotService.callSendAPI(req.body.psid, response1);
+    await chatBotService.callSendAPI(req.body.psid, response2);
+
+    return res
+      .status(200)
+      .json({ message: "Get reservation data successfully." });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Error get reservation data: ", error });
+  }
+};
+
 module.exports = {
   postWebhook: postWebhook,
   getWebhook: getWebhook,
@@ -251,4 +277,5 @@ module.exports = {
   callSendAPI: callSendAPI,
   messengerProfile: messengerProfile,
   persistentMenu: persistentMenu,
+  handleReservationData: handleReservationData,
 };

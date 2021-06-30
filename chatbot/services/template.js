@@ -277,6 +277,11 @@ let templateManageReservation = () => {
                   },
                   {
                     type: "postback",
+                    title: "Latest reservation",
+                    payload: "LATEST_RESERVATION",
+                  },
+                  {
+                    type: "postback",
                     title: "Update reservation",
                     payload: "UPDATE_RESERVATION",
                   },
