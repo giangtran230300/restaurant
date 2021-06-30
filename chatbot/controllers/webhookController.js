@@ -85,43 +85,43 @@ function handlePostback(sender_psid, received_postback) {
     // Get the payload for the postback
     let payload = received_postback.payload;
   
-    // Set the response based on the postback payload
-    switch (payload) {
-      // Booking restaurant's services
-      case "RESERVE_SERVICE":
-        await chatBotService.handleReserve(sender_psid);
-        break;
+    // // Set the response based on the postback payload
+    // switch (payload) {
+    //   // Booking restaurant's services
+    //   case "RESERVE_SERVICE":
+    //     await chatBotService.handleReserve(sender_psid);
+    //     break;
   
-      // Restaurant menu
-      case "MAIN_MENU":
-        await chatBotService.handleMainMenu(sender_psid);
-        break;
+    //   // Restaurant menu
+    //   case "MAIN_MENU":
+    //     await chatBotService.handleMainMenu(sender_psid);
+    //     break;
   
-      case "DISHES_MENU":
-        await chatBotService.handleDishesMenu(sender_psid);
-        break;
+    //   case "DISHES_MENU":
+    //     await chatBotService.handleDishesMenu(sender_psid);
+    //     break;
   
-      case "COMBO_MENU":
-        await chatBotService.handleComboMenu(sender_psid);
-        break;
+    //   case "COMBO_MENU":
+    //     await chatBotService.handleComboMenu(sender_psid);
+    //     break;
   
-      case "DRINK_DESSERT":
-        await chatBotService.handleDDMenu(sender_psid);
-        break;
+    //   case "DRINK_DESSERT":
+    //     await chatBotService.handleDDMenu(sender_psid);
+    //     break;
   
-      // Chatbot start
-      case "RESTART":
-      case "GET_STARTED":
-        await chatBotService.handleGetStarted(sender_psid);
-        break;
+    //   // Chatbot start
+    //   case "RESTART":
+    //   case "GET_STARTED":
+    //     await chatBotService.handleGetStarted(sender_psid);
+    //     break;
   
-      case "CARE_HELP":
-        await chatBotService.handleCareHelp(sender_psid);
-        break;
+    //   case "CARE_HELP":
+    //     await chatBotService.handleCareHelp(sender_psid);
+    //     break;
   
-      default:
-        response = { text: `Default message for ${payload}!` };
-    }
+    //   default:
+    //     response = { text: `Default message for ${payload}!` };
+    // }
   
     // Send the message to acknowledge the postback
     // callSendAPI(sender_psid, response);
