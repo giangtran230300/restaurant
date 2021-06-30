@@ -174,7 +174,7 @@ let messengerProfile = async (req, res) => {
   // Send the HTTP request to the Messenger Profile Platform
   request(
     {
-      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=EAAQE4TNxYaIBAMKsP3ZCOP9qej12KYUxm4Ue8DlPxCZAcn1YAZCtb91Xi8oxZCcWmMGcL6cQarHKu9w47QZBwBr2fgPPTeK42ZBtLN0eRSeGkoiPq2dZAIP8fQJY2dppcZBZAbxAsfZAef1IQZBUofhj9VZCqi94dimm5CrCZCNem3A422isTzlFOZCJ8T`,
+      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: "POST",
       json: request_body,
@@ -228,7 +228,7 @@ let persistentMenu = async (req, res) => {
   // Send the HTTP request to the Messenger Profile Platform
   await request(
     {
-      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=EAAQE4TNxYaIBAMKsP3ZCOP9qej12KYUxm4Ue8DlPxCZAcn1YAZCtb91Xi8oxZCcWmMGcL6cQarHKu9w47QZBwBr2fgPPTeK42ZBtLN0eRSeGkoiPq2dZAIP8fQJY2dppcZBZAbxAsfZAef1IQZBUofhj9VZCqi94dimm5CrCZCNem3A422isTzlFOZCJ8T`,
+      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: "POST",
       json: request_body,
@@ -237,13 +237,13 @@ let persistentMenu = async (req, res) => {
       console.log(body);
       if (!err) {
         console.log("Set up persistent menu success!");
+        return res.send("Set up persistent menu success!");
       } else {
         console.error("Unable to set up persistent menu:" + err);
+        return res.send("Unable to set up persistent menu:" + err);
       }
     }
   );
-
-  return res.send("Set up persistent menu seuccess!");
 };
 
 
