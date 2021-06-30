@@ -59,7 +59,7 @@ let templpateMainMenu = () => {
           {
             title: "Our menu",
             subtitle: "This is our menu for lunch and dinner.",
-            image_url: IMAGE_MENU,
+            image_url: IMAGE_RESTAURANT_URL,
             buttons: [
               {
                 type: "postback",
@@ -82,12 +82,12 @@ let templpateMainMenu = () => {
             title: "TABLES AND ROOMS",
             subtitle:
               "Accomodates up to 250 customers, has tables for 2/4/6 people, private room and has great garden views.",
-            image_url: IMAGE_ROOM,
+            image_url: IMAGE_RESTAURANT_URL,
             buttons: [
               {
                 type: "web_url",
                 title: "VIEW ROOM",
-                url: "https://fb-appointment.herokuapp.com/",
+                url: `${process.env.WEBVIEW_URL}`,
                 webview_height_ratio: "full",
               },
             ],
@@ -95,18 +95,18 @@ let templpateMainMenu = () => {
           {
             title: "OUR SERVICES",
             subtitle: "We provide services for your meal, organize events.",
-            image_url: IMAGE_SERVICE,
+            image_url: IMAGE_RESTAURANT_URL,
             buttons: [
               {
                 type: "web_url",
                 title: "BIRTHDAY PARTY",
-                url: "https://fb-appointment.herokuapp.com/",
+                url: `${process.env.WEBVIEW_URL}`,
                 webview_height_ratio: "full",
               },
               {
                 type: "web_url",
                 title: "ANNIVERSARY",
-                url: "https://fb-appointment.herokuapp.com/",
+                url: `${process.env.WEBVIEW_URL}`,
                 webview_height_ratio: "full",
               },
               {
