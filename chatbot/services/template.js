@@ -19,13 +19,13 @@ let templpateGetStartedButton = () => {
                 title: "Restaurant menu",
                 payload: "MAIN_MENU",
               },
-              {
-                "type": "web_url",
-                "url": `${process.env.RESERVE_WEBVIEW_URL}`,
-                "title": "Reserve service",
-                "webview_height_ratio": "tall",
-                "messenger_extensions": true
-              },
+            //   {
+            //     "type": "web_url",
+            //     "url": `${process.env.RESERVE_WEBVIEW_URL}`,
+            //     "title": "Reserve service",
+            //     "webview_height_ratio": "tall",
+            //     "messenger_extensions": true
+            //   },
             ],
           },
         ],
