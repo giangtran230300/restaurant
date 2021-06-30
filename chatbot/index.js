@@ -7,7 +7,7 @@ const webRoutes = require('./routes/webRoutes')
 let app = express();
 
 // HTML here
-app.use(express.static("./restaurant"));
+app.use(express.static('./chatbot/restaurant'));
 
 // routes
 webRoutes(app);
