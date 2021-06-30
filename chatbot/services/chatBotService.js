@@ -229,4 +229,5 @@ module.exports = {
   handleDishesMenu: handleDishesMenu,
   handleComboMenu: handleComboMenu,
   handleDDMenu: handleDDMenu,
+  manageReservation: manageReservation,
 };
