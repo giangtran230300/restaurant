@@ -137,8 +137,8 @@ function callSendAPI(sender_psid, response) {
     message: response,
   };
 
-  await sendTypingOn(sender_psid);
-  await markMessageRead(sender_psid);
+//   await sendTypingOn(sender_psid);
+//   await markMessageRead(sender_psid);
 
   // Send the HTTP request to the Messenger Platform
   request(
