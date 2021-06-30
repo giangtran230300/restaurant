@@ -87,11 +87,6 @@ async function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   switch (payload) {
-    // Booking restaurant's services
-    // case "RESERVE_SERVICE":
-    //   await chatBotService.handleReserve(sender_psid);
-    //   break;
-
     // Restaurant menu
     case "MAIN_MENU":
       await chatBotService.handleMainMenu(sender_psid);
@@ -114,11 +109,13 @@ async function handlePostback(sender_psid, received_postback) {
     case "GET_STARTED":
       await chatBotService.handleGetStarted(sender_psid);
       break;
-
+    
+    // Manage reservation 
     case "MANAGE_RESERVATION":
       await chatBotService.manageReservation(sender_psid);
       break;
 
+    // talk to agent
     case "CARE_HELP":
       await chatBotService.handleCareHelp(sender_psid);
       break;
