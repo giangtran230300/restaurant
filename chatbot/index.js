@@ -6,14 +6,15 @@ const webRoutes = require('./routes/webRoutes')
 
 let app = express();
 
+// body parser
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+
 // HTML here
 app.use(express.static('./chatbot/restaurant'));
 
 // routes
 webRoutes(app);
-  
-app.use(express.json());
-app.use(express.urlencoded({extended: true}))
 
 // PORT
 const port = process.env.PORT || 5000;
