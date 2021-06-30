@@ -1,28 +1,26 @@
 (function (d, s, id) {
-  var js,
-    fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {
-    return;
-  }
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
-  fjs.parentNode.insertBefore(js, fjs);
-})(document, "script", "Messenger");
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) { return; }
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'Messenger'));
 
 window.extAsyncInit = function () {
-  // the Messenger Extensions JS SDK is done loading
-  MessengerExtensions.getContext(
-    '1131265184063906',
-    function success(thread_context) {
-      // success
-      $("#psid").val(thread_context.psid);
-      handleReservation();
-    },
-    function error(err) {
-      // error
-    }
-  );
+    // the Messenger Extensions JS SDK is done loading 
+
+    MessengerExtensions.getContext('1131265184063906',
+        function success(thread_context) {
+            // success
+            //set psid to input
+            $("#psid").val(thread_context.psid);
+            handleReserve();
+        },
+        function error(err) {
+            // error
+            console.log('Lỗi đặt bàn Eric bot', err);
+        }
+    );
 };
 
 //validate inputs
@@ -30,13 +28,12 @@ function validateInputFields() {
     let customerName = $("#customerName");
     let phoneNumber = $("#phoneNumber");
 
-    if (!customerName.val() === "") {
+    if (customerName.val() === "") {
         customerName.addClass("is-invalid");
         return true;
     } else {
-        email.removeClass("is-invalid");
+        customerName.removeClass("is-invalid");
     }
-
     if (phoneNumber.val() === "") {
         phoneNumber.addClass("is-invalid");
         return true;
@@ -45,9 +42,10 @@ function validateInputFields() {
     }
 
     return false;
-};
+}
 
-function handleReservation() {
+
+function handleReserve() {
     $("#btnReserve").on("click", function (e) {
         let check = validateInputFields(); //return true or false
 
@@ -80,4 +78,4 @@ function handleReservation() {
             })
         }
     });
-};
+}
