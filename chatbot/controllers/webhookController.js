@@ -61,85 +61,85 @@ let getWebhook = (req, res) => {
 
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
-    let response;
+  let response;
 
-    // Check if the message contains text
-    if (received_message.text) {
-      // Create the payload for a basic text message
-      response = {
-        text: `You sent the message: "${received_message.text}"`,
-      };
-    } else if (received_message.attachments) {
-      // Gets the URL of the message attachment
-      let attachment_url = received_message.attachments[0].payload.url;
-      response = {};
-    }
-  
-    // Sends the response message
-    callSendAPI(sender_psid, response);
+  // Check if the message contains text
+  if (received_message.text) {
+    // Create the payload for a basic text message
+    response = {
+      text: `You sent the message: "${received_message.text}"`,
+    };
+  } else if (received_message.attachments) {
+    // Gets the URL of the message attachment
+    let attachment_url = received_message.attachments[0].payload.url;
+    response = {};
+  }
+
+  // Sends the response message
+  callSendAPI(sender_psid, response);
 }
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
-    let response;
+  let response;
 
-    // Get the payload for the postback
-    let payload = received_postback.payload;
-  
-    // // Set the response based on the postback payload
-    // switch (payload) {
-    //   // Booking restaurant's services
-    //   case "RESERVE_SERVICE":
-    //     await chatBotService.handleReserve(sender_psid);
-    //     break;
-  
-    //   // Restaurant menu
-    //   case "MAIN_MENU":
-    //     await chatBotService.handleMainMenu(sender_psid);
-    //     break;
-  
-    //   case "DISHES_MENU":
-    //     await chatBotService.handleDishesMenu(sender_psid);
-    //     break;
-  
-    //   case "COMBO_MENU":
-    //     await chatBotService.handleComboMenu(sender_psid);
-    //     break;
-  
-    //   case "DRINK_DESSERT":
-    //     await chatBotService.handleDDMenu(sender_psid);
-    //     break;
-  
-    //   // Chatbot start
-    //   case "RESTART":
-    //   case "GET_STARTED":
-    //     await chatBotService.handleGetStarted(sender_psid);
-    //     break;
-  
-    //   case "CARE_HELP":
-    //     await chatBotService.handleCareHelp(sender_psid);
-    //     break;
-  
-    //   default:
-    //     response = { text: `Default message for ${payload}!` };
-    // }
-  
-    // Send the message to acknowledge the postback
-    // callSendAPI(sender_psid, response);
+  // Get the payload for the postback
+  let payload = received_postback.payload;
+
+  // // Set the response based on the postback payload
+  // switch (payload) {
+  //   // Booking restaurant's services
+  //   case "RESERVE_SERVICE":
+  //     await chatBotService.handleReserve(sender_psid);
+  //     break;
+
+  //   // Restaurant menu
+  //   case "MAIN_MENU":
+  //     await chatBotService.handleMainMenu(sender_psid);
+  //     break;
+
+  //   case "DISHES_MENU":
+  //     await chatBotService.handleDishesMenu(sender_psid);
+  //     break;
+
+  //   case "COMBO_MENU":
+  //     await chatBotService.handleComboMenu(sender_psid);
+  //     break;
+
+  //   case "DRINK_DESSERT":
+  //     await chatBotService.handleDDMenu(sender_psid);
+  //     break;
+
+  //   // Chatbot start
+  //   case "RESTART":
+  //   case "GET_STARTED":
+  //     await chatBotService.handleGetStarted(sender_psid);
+  //     break;
+
+  //   case "CARE_HELP":
+  //     await chatBotService.handleCareHelp(sender_psid);
+  //     break;
+
+  //   default:
+  //     response = { text: `Default message for ${payload}!` };
+  // }
+
+  // Send the message to acknowledge the postback
+  // callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API
 function callSendAPI(sender_psid, response) {
-   // Construct the message body
-   let request_body = {
+  // Construct the message body
+  let request_body = {
     recipient: {
       id: sender_psid,
     },
     message: response,
   };
 
-//   await sendTypingOn(sender_psid);
-//   await markMessageRead(sender_psid);
+  //   await sendTypingOn(sender_psid);
+  //   await markMessageRead(sender_psid);
 
   // Send the HTTP request to the Messenger Platform
   request(
@@ -159,10 +159,68 @@ function callSendAPI(sender_psid, response) {
   );
 }
 
+let messengerProfile = async (req, res) => {
+  // Construct the message body
+  let request_body = {
+    get_started: { payload: "GET_STARTED" },
+    whitelisted_domains: ["https://bres-restaurant.herokuapp.com/"],
+  };
+
+  // Send the HTTP request to the Messenger Profile Platform
+  await request(
+    {
+      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+      qs: { access_token: PAGE_ACCESS_TOKEN },
+      method: "POST",
+      json: request_body,
+    },
+    (err, res, body) => {
+      console.log(body);
+      if (!err) {
+        console.log("Set up messenger profile success!");
+      } else {
+        console.error("Unable to set up profile:" + err);
+      }
+    }
+  );
+
+  return res.send("Set up profile seuccess!");
+};
+
+// let persistentMenu = async (req, res) => {
+//   // Construct the message body
+//   let request_body = {
+//     get_started: { payload: "GET_STARTED" },
+//     whitelisted_domains: ["https://bres-restaurant.herokuapp.com/"],
+//   };
+
+//   // Send the HTTP request to the Messenger Profile Platform
+//   await request(
+//     {
+//       uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+//       qs: { access_token: PAGE_ACCESS_TOKEN },
+//       method: "POST",
+//       json: request_body,
+//     },
+//     (err, res, body) => {
+//       console.log(body);
+//       if (!err) {
+//         console.log("Set up messenger profile success!");
+//       } else {
+//         console.error("Unable to set up profile:" + err);
+//       }
+//     }
+//   );
+
+//   return res.send("Set up profile seuccess!");
+// };
+
 module.exports = {
   postWebhook: postWebhook,
   getWebhook: getWebhook,
   handleMessage: handleMessage,
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
+  messengerProfile: messengerProfile,
+  //persistentMenu: persistentMenu,
 };
