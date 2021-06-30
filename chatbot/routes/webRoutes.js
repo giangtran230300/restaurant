@@ -14,7 +14,7 @@ let initRoutes = (app) => {
     router.get('/webhook',  webhookController.getWebhook);
 
     router.post('/webhook/user-profile',  webhookController.messengerProfile);
-    //router.post('/webhook/persistent-menu',  webhookController.messengerProfile);
+    router.post('/webhook/persistent-menu',  webhookController.persistentMenu);
 
 
     return app.use('/', router);
