@@ -174,7 +174,7 @@ let messengerProfile = async (req, res) => {
   // Send the HTTP request to the Messenger Profile Platform
   request(
     {
-      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=EAAQE4TNxYaIBAMKsP3ZCOP9qej12KYUxm4Ue8DlPxCZAcn1YAZCtb91Xi8oxZCcWmMGcL6cQarHKu9w47QZBwBr2fgPPTeK42ZBtLN0eRSeGkoiPq2dZAIP8fQJY2dppcZBZAbxAsfZAef1IQZBUofhj9VZCqi94dimm5CrCZCNem3A422isTzlFOZCJ8T`,
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: "POST",
       json: request_body,
@@ -228,7 +228,7 @@ let persistentMenu = async (req, res) => {
   // Send the HTTP request to the Messenger Profile Platform
   await request(
     {
-      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=EAAQE4TNxYaIBAMKsP3ZCOP9qej12KYUxm4Ue8DlPxCZAcn1YAZCtb91Xi8oxZCcWmMGcL6cQarHKu9w47QZBwBr2fgPPTeK42ZBtLN0eRSeGkoiPq2dZAIP8fQJY2dppcZBZAbxAsfZAef1IQZBUofhj9VZCqi94dimm5CrCZCNem3A422isTzlFOZCJ8T`,
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: "POST",
       json: request_body,
