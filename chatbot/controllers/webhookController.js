@@ -253,6 +253,9 @@ let handleReservationData = async (req, res) => {
       text: `---Reservation information---
         \nName: ${req.body.customerName}
         \nPhone number: ${req.body.phoneNumber}
+        \nNumber of people: ${req.body.peopleNumber}
+        \nReserve date: ${req.body.reserveDate}
+        \nReserve time: ${req.body.reserveTime}
         `,
     };
 

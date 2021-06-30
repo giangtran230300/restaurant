@@ -27,6 +27,9 @@ window.extAsyncInit = function () {
 function validateInputFields() {
     let customerName = $("#customerName");
     let phoneNumber = $("#phoneNumber");
+    let peopleNumber = $("#peopleNumber");
+    let reserveDate = $("#reserveDate");
+    let reserveTime = $("#reserveTime");
 
     if (customerName.val() === "") {
         customerName.addClass("is-invalid");
@@ -34,6 +37,28 @@ function validateInputFields() {
     } else {
         customerName.removeClass("is-invalid");
     }
+
+    if (peopleNumber.val() === "") {
+        peopleNumber.addClass("is-invalid");
+        return true;
+    } else {
+        peopleNumber.removeClass("is-invalid");
+    }
+    
+    if (reserveDate.val() === "") {
+        reserveDate.addClass("is-invalid");
+        return true;
+    } else {
+        reserveDate.removeClass("is-invalid");
+    }
+    
+    if (reserveTime.val() === "") {
+        reserveTime.addClass("is-invalid");
+        return true;
+    } else {
+        reserveTime.removeClass("is-invalid");
+    }
+
     if (phoneNumber.val() === "") {
         phoneNumber.addClass("is-invalid");
         return true;
@@ -52,7 +77,10 @@ function handleReserve() {
         let data = {
             psid: $("#psid").val(),
             customerName: $("#customerName").val(),
-            phoneNumber: $("#phoneNumber").val()
+            phoneNumber: $("#phoneNumber").val(),
+            peopleNumber: $("#peopleNumber").val(),
+            reserveDate: $("#reserveDate").val(),
+            reserveTime: $("#reserveTime").val()
         };
 
         if (!check) {
