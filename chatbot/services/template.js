@@ -28,7 +28,7 @@ let templpateGetStartedButton = () => {
                 },
                 {
                   "type": "web_url",
-                  "url": `${process.env.RESERVE_WEBVIEW_URL}`,
+                  "url": `${process.env.WEBVIEW_URL}`,
                   "title": "Visit our website",
                 },
               ],
