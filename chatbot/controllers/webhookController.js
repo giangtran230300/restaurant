@@ -169,6 +169,33 @@ let messengerProfile = async (req, res) => {
    let request_body = {
     get_started: { payload: "GET_STARTED" },
     whitelisted_domains: ["https://bres-restaurant.herokuapp.com/"],
+  };
+
+  // Send the HTTP request to the Messenger Profile Platform
+  request(
+    {
+      uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+      qs: { access_token: PAGE_ACCESS_TOKEN },
+      method: "POST",
+      json: request_body,
+    },
+    (err, res, body) => {
+      console.log(body);
+      if (!err) {
+        console.log("Set up profile success!");
+      } else {
+        console.error("Unable to set up profile:" + err);
+      }
+    }
+  );
+
+  return res.send("Set up profile seuccess!");
+};
+
+let persistentMenu = async (req, res) => {
+  // Construct the message body
+  let request_body = {
+    get_started: { payload: "GET_STARTED" },  
     persistent_menu: [
         {
           locale: "default",
@@ -200,9 +227,10 @@ let messengerProfile = async (req, res) => {
   };
 
   // Send the HTTP request to the Messenger Profile Platform
-  request(
+  await request(
     {
       uri: `https://graph.facebook.com/v10.0/me/messenger_profile?access_token=${PAGE_ACCESS_TOKEN}`,
+
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: "POST",
       json: request_body,
@@ -210,15 +238,17 @@ let messengerProfile = async (req, res) => {
     (err, res, body) => {
       console.log(body);
       if (!err) {
-        console.log("Set up profile success!");
+        console.log("Set up persistent menu success!");
       } else {
-        console.error("Unable to set up profile:" + err);
+        console.error("Unable to set up persistent menu:" + err);
       }
     }
   );
 
-  return res.send("Set up profile seuccess!");
+  return res.send("Set up persistent menu seuccess!");
 };
+
+
 
 module.exports = {
   postWebhook: postWebhook,
@@ -227,4 +257,5 @@ module.exports = {
   handlePostback: handlePostback,
   callSendAPI: callSendAPI,
   messengerProfile: messengerProfile,
+  persistentMenu: persistentMenu,
 };
