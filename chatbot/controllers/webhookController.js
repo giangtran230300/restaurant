@@ -94,22 +94,22 @@ async function handlePostback(sender_psid, received_postback) {
     //   await chatBotService.handleReserve(sender_psid);
     //   break;
 
-    // // Restaurant menu
-    // case "MAIN_MENU":
-    //   await chatBotService.handleMainMenu(sender_psid);
-    //   break;
+    // Restaurant menu
+    case "MAIN_MENU":
+      await chatBotService.handleMainMenu(sender_psid);
+      break;
 
-    // case "DISHES_MENU":
-    //   await chatBotService.handleDishesMenu(sender_psid);
-    //   break;
+    case "DISHES_MENU":
+      await chatBotService.handleDishesMenu(sender_psid);
+      break;
 
-    // case "COMBO_MENU":
-    //   await chatBotService.handleComboMenu(sender_psid);
-    //   break;
+    case "COMBO_MENU":
+      await chatBotService.handleComboMenu(sender_psid);
+      break;
 
-    // case "DRINK_DESSERT":
-    //   await chatBotService.handleDDMenu(sender_psid);
-    //   break;
+    case "DRINK_DESSERT":
+      await chatBotService.handleDDMenu(sender_psid);
+      break;
 
     // Chatbot start
     case "RESTART":
@@ -247,8 +247,6 @@ let persistentMenu = async (req, res) => {
 
   return res.send("Set up persistent menu seuccess!");
 };
-
-
 
 module.exports = {
   postWebhook: postWebhook,
