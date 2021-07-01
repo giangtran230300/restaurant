@@ -54,8 +54,6 @@ app.post('sign_up', function (req, res) {
 	return res.redirect('signup_success.html');
 })
 
-
-
 	.listen(3000)
 
 
