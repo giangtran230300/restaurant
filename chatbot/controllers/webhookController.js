@@ -259,23 +259,23 @@ let handleReservationData = async (req, res) => {
         `,
     };
 
-    var rst = new Booking({
-      name: req.body.customerName,
-      time: req.body.reserveTime,
-      date: req.body.reserveDate,
-      phone_number: req.body.phoneNumber,
-      note: req.body.peopleNumber,
-    });
+    // var rst = new Booking({
+    //   name: req.body.customerName,
+    //   time: req.body.reserveTime,
+    //   date: req.body.reserveDate,
+    //   phone_number: req.body.phoneNumber,
+    //   note: req.body.peopleNumber,
+    // });
 
-    rst.save((err, doc) => {
-      if (!err) {
-        res.send(doc);
-      } else {
-        console.log(
-          "Error in save appointments:" + JSON.stringify(err, undefined, 2)
-        );
-      }
-    });
+    // rst.save((err, doc) => {
+    //   if (!err) {
+    //     res.send(doc);
+    //   } else {
+    //     console.log(
+    //       "Error in save appointments:" + JSON.stringify(err, undefined, 2)
+    //     );
+    //   }
+    // });
 
     await chatBotService.callSendAPI(req.body.psid, response1);
     await chatBotService.callSendAPI(req.body.psid, response2);
