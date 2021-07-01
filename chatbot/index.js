@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var router = express.Router();
 const webRoutes = require('./routes/webRoutes')
+const { mongoose } = require('./models/db');
 
 let app = express();
 

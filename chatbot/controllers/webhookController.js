@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const request = require("request");
 const chatBotService = require("../services/chatBotService");
 var router = express.Router();
-
+var { Booking } = require('../models/res_booking');
 //tokens
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -258,6 +258,24 @@ let handleReservationData = async (req, res) => {
         \nReserve time: ${req.body.reserveTime}
         `,
     };
+
+    var rst = new Booking({
+      name: req.body.customerName,
+      time: req.body.reserveTime,
+      date: req.body.reserveDate,
+      phone_number: req.body.phoneNumber,
+      note: req.body.peopleNumber,
+    });
+
+    rst.save((err, doc) => {
+      if (!err) {
+        res.send(doc);
+      } else {
+        console.log(
+          "Error in save appointments:" + JSON.stringify(err, undefined, 2)
+        );
+      }
+    });
 
     await chatBotService.callSendAPI(req.body.psid, response1);
     await chatBotService.callSendAPI(req.body.psid, response2);
