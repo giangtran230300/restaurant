@@ -20,7 +20,7 @@ let initRoutes = (app) => {
     res.sendFile("reserve.html", { root: "./chatbot/restaurant" });
   });
   router.post("/reserve-post", webhookController.handleReservationData);
-
+  
   return app.use("/", router);
 };
 
