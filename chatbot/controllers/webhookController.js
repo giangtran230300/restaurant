@@ -264,23 +264,20 @@ let handleReservationData = async (req, res) => {
         \nPhone number: ${phoneNumber}
         \nNumber of people: ${peopleNumber}
         \nReserve date: ${reserveDate}
-        \nReserve time: ${reserveTime}
-        `,
+        \nReserve time: ${reserveTime}.`,
     };
 
     await chatBotService.callSendAPI(psid, response1);
     await chatBotService.callSendAPI(psid, response2);
 
-    let rsvt = new Reservation({
-      name: customerName,
-      time: reserveTime,
-      date: reserveDate,
-      phone_number: phoneNumber,
-      people_number: peopleNumber,
-    });
+    // let rsvt = new Reservation({
+    //   name: customerName,
+    //   time: reserveTime,
+    //   date: reserveDate,
+    //   phone_number: phoneNumber,
+    //   people_number: peopleNumber,
+    // });
 
-    rsvt.save();
-    
     return res
       .status(200)
       .json({ message: "Get reservation data successfully." });
