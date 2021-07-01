@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 var app = express();
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://root:root@cluster0.fmgyw.mongodb.net/?retryWrites=true&w=majority/restaurantweb.restaurantusers',{
+mongoose.connect('mongodb+srv://root:root@cluster0.fmgyw.mongodb.net/restaurantweb/?retryWrites=true&w=majority',{
 	useNewUrlParser: true,
 	useFindAndModify: false,
 	useUnifiedTopology: true,
@@ -26,14 +26,12 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
-	res.set({
-		'Access-control-Allow-Origin': '*'
-	});
+	res.set('Access-Control-Allow-Origin', '*');
 	return res.redirect('signup.html');
 })
 
 
-app.post('sign_up', function (req, res) {
+app.post('/signup', function (req, res) {
 	var name = req.body.name;
 	var email = req.body.email;
 	var password = req.body.password;

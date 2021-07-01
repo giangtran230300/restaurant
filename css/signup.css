@@ -242,6 +242,15 @@ h6 {
     font-size: 15px;
 }
 
+h8 {
+    color: white;
+    opacity: 0.8;
+    position: absolute;
+    left: 40%;
+    top: 80%;
+    font-size: 60px;
+}
+
 input[type=text], input[type=password] {
     width: 100%;
     padding: 15px;
@@ -306,4 +315,5 @@ label {
     opacity: 1;
     font-weight: 100;
 }
+
 
