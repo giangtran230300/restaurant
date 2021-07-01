@@ -270,18 +270,18 @@ let handleReservationData = async (req, res) => {
     await chatBotService.callSendAPI(psid, response1);
     await chatBotService.callSendAPI(psid, response2);
 
-    let rsvt = new Reservation({
-      name: customerName,
-      time: reserveTime,
-      date: reserveDate,
-      phone_number: phoneNumber,
-      people_number: peopleNumber,
-    });
+  //   let rsvt = new Reservation({
+  //     name: customerName,
+  //     time: reserveTime,
+  //     date: reserveDate,
+  //     phone_number: phoneNumber,
+  //     people_number: peopleNumber,
+  //   });
 
-    rsvt.save((err, doc) => {
-      if (!err) { res.send(doc); }
-      else { console.log('Error in save appointments:' + JSON.stringify(err, undefined, 2)); }
-  });
+  //   rsvt.save((err, doc) => {
+  //     if (!err) { res.send(doc); }
+  //     else { console.log('Error in save appointments:' + JSON.stringify(err, undefined, 2)); }
+  // });
 
     return res
       .status(200)
