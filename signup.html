@@ -66,26 +66,30 @@
         <div class="container">
             <h1>Register</h1>
             <h6>Please fill in this form to create an account.</h6>
-            <hr>
+            <form action="sign_up" method="post">
+                <hr>
 
-            <label for="name"><b>User name</b></label>
-            <input type="text" placeholder="User name" name="name" id="name" required>
+                <label for="name"><b>User name</b></label>
+                <input type="text" placeholder="User name" name="name" id="name" required>
 
-            <label for="number"><b>Phone number</b></label>
-            <input type="text" placeholder="Phone number" name="number" id="number" required>
+                <label for="number"><b>Phone number</b></label>
+                <input type="text" placeholder="Phone number" name="number" id="number" required>
 
-            <label for="email"><b>Email</b></label>
-            <input type="text" placeholder="Enter email" name="email" id="email" required>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter email" name="email" id="email" required>
 
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
 
-            <hr>
-            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                <hr>
+                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-            <button type="submit" class="registerbtn" name="submitDetails" value="Submit">Submit</button>
+                <input type="submit" class="registerbtn" name="submitDetails" value="Submit"/>
+            </form>
+                
         </div>
+        
 
         <div class="containersignin">
             <p>Already have an account? <a href="">Log in</a>.</p>
