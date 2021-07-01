@@ -247,22 +247,29 @@ let handleReservationData = async (req, res) => {
   try {
     var body = req.body
 
+    const customerName = body.customerName 
+    const phoneNumber = body.phoneNumber
+    const peopleNumber = body.peopleNumber
+    const reserveDate = body.reserveDate
+    const reserveTime = body.reserveTime
+    const psid = body.psid
+
     let response1 = {
       text: "You have made a reservation. We are waiting to see you <3",
     };
 
     let response2 = {
       text: `---Reservation information---
-        \nName: ${body.customerName}
-        \nPhone number: ${body.phoneNumber}
-        \nNumber of people: ${body.peopleNumber}
-        \nReserve date: ${body.reserveDate}
-        \nReserve time: ${body.reserveTime}
+        \nName: ${customerName}
+        \nPhone number: ${phoneNumber}
+        \nNumber of people: ${peopleNumber}
+        \nReserve date: ${reserveDate}
+        \nReserve time: ${reserveTime}
         `,
     };
 
-    await chatBotService.callSendAPI(req.body.psid, response1);
-    await chatBotService.callSendAPI(req.body.psid, response2);
+    await chatBotService.callSendAPI(psid, response1);
+    await chatBotService.callSendAPI(psid, response2);
 
     return res
       .status(200)
