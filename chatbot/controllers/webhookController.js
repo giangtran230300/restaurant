@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const request = require("request");
 const chatBotService = require("../services/chatBotService");
 var router = express.Router();
-var { Booking } = require('../models/res_booking');
+var { Booking } = require("../models/res_booking");
 //tokens
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -245,37 +245,21 @@ let persistentMenu = async (req, res) => {
 
 let handleReservationData = async (req, res) => {
   try {
+    var body = req.body
+
     let response1 = {
       text: "You have made a reservation. We are waiting to see you <3",
     };
 
     let response2 = {
       text: `---Reservation information---
-        \nName: ${req.body.customerName}
-        \nPhone number: ${req.body.phoneNumber}
-        \nNumber of people: ${req.body.peopleNumber}
-        \nReserve date: ${req.body.reserveDate}
-        \nReserve time: ${req.body.reserveTime}
+        \nName: ${body.customerName}
+        \nPhone number: ${body.phoneNumber}
+        \nNumber of people: ${body.peopleNumber}
+        \nReserve date: ${body.reserveDate}
+        \nReserve time: ${body.reserveTime}
         `,
     };
-
-    // var rst = new Booking({
-    //   name: req.body.customerName,
-    //   time: req.body.reserveTime,
-    //   date: req.body.reserveDate,
-    //   phone_number: req.body.phoneNumber,
-    //   note: req.body.peopleNumber,
-    // });
-
-    // rst.save((err, doc) => {
-    //   if (!err) {
-    //     res.send(doc);
-    //   } else {
-    //     console.log(
-    //       "Error in save appointments:" + JSON.stringify(err, undefined, 2)
-    //     );
-    //   }
-    // });
 
     await chatBotService.callSendAPI(req.body.psid, response1);
     await chatBotService.callSendAPI(req.body.psid, response2);
