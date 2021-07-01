@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const request = require("request");
 const chatBotService = require("../services/chatBotService");
 var router = express.Router();
-var { Booking } = require("../models/res_booking");
+var { Reservation } = require("../models/res_booking");
 //tokens
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -245,14 +245,14 @@ let persistentMenu = async (req, res) => {
 
 let handleReservationData = async (req, res) => {
   try {
-    var body = req.body
+    var body = req.body;
 
-    const customerName = body.customerName 
-    const phoneNumber = body.phoneNumber
-    const peopleNumber = body.peopleNumber
-    const reserveDate = body.reserveDate
-    const reserveTime = body.reserveTime
-    const psid = body.psid
+    const customerName = body.customerName;
+    const phoneNumber = body.phoneNumber;
+    const peopleNumber = body.peopleNumber;
+    const reserveDate = body.reserveDate;
+    const reserveTime = body.reserveTime;
+    const psid = body.psid;
 
     let response1 = {
       text: "You have made a reservation. We are waiting to see you <3",
@@ -271,6 +271,16 @@ let handleReservationData = async (req, res) => {
     await chatBotService.callSendAPI(psid, response1);
     await chatBotService.callSendAPI(psid, response2);
 
+    let rsvt = new Reservation({
+      name: customerName,
+      time: reserveTime,
+      date: reserveDate,
+      phone_number: phoneNumber,
+      people_number: peopleNumber,
+    });
+
+    rsvt.save();
+    
     return res
       .status(200)
       .json({ message: "Get reservation data successfully." });
