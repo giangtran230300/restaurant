@@ -6,6 +6,8 @@ const chatBotService = require("../services/chatBotService");
 const reservationController = require("../controllers/reservationController");
 var router = express.Router();
 
+// db
+const mongoose = require('mongoose');
 var Reservation = require('../models/booking');
 
 //tokens
@@ -255,6 +257,7 @@ let handleReservationData = async (req, res) => {
     const peopleNumber = body.peopleNumber;
     const reserveDate = body.reserveDate;
     const reserveTime = body.reserveTime;
+    var reserveAt = new Date(reserveDate, reserveTime);
     const note = body.note;
     const psid = body.psid;
 
@@ -284,7 +287,7 @@ let handleReservationData = async (req, res) => {
       note: note
   });
   reservation.save((err, doc) => {
-      if (!err) { console.log('Saved to db') }
+      if (!err) { console.log('Saved to db' + reserveAt) }
       else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
   });
 
