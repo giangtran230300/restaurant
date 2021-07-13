@@ -9,6 +9,7 @@ var router = express.Router();
 // db
 const mongoose = require('mongoose');
 var Reservation = require('../models/booking');
+var Customer = require('../models/customer');
 
 //tokens
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
@@ -280,7 +281,7 @@ let handleReservationData = async (req, res) => {
     await chatBotService.callSendAPI(psid, response2);
     
     // save to db
-    var reservation = new Reservation({
+  var reservation = new Reservation({
       psid: psid,
       name: customerName,
       arrive_at: new Date(reserveAt),
@@ -293,6 +294,18 @@ let handleReservationData = async (req, res) => {
       if (!err) { console.log('Saved to db') }
       else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
   });
+
+  let query = {PhoneNumber: phoneNumber};
+  let update = { 
+    $setOnInsert: {
+      CustomerName: customerName,
+      PhoneNumber: phoneNumber
+    }
+  };
+  let options = { upsert: true };
+
+  Customer.findOneAndUpdate(query, update, options)
+  .catch(error => console.error(error));
 
     return res
       .status(200)

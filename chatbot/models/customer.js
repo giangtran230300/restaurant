@@ -25,7 +25,6 @@ const customerSchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
-
 	Point: {
 		type: Number,
 		default: 0
