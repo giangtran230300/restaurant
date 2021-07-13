@@ -283,7 +283,7 @@ let handleReservationData = async (req, res) => {
       people_number: peopleNumber,
       note: note
   });
-  await reservation.save((err, doc) => {
+  reservation.save((err, doc) => {
       if (!err) { res.send(doc); }
       else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
   });
