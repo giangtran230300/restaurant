@@ -3,7 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var router = express.Router();
 const webRoutes = require('./routes/webRoutes')
-const { mongoose } = require('./models/db');
+const mongoose = require('./models/db');
+const reservationController = require("./controllers/reservationController");
 
 let app = express();
 
@@ -22,5 +23,3 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log('Express server listening on port', port)
 });
-
-//

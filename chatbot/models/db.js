@@ -1,10 +1,10 @@
+require("dotenv").config();
 const mongoose = require('mongoose');
-
-mongoose.connect(
-    "mongodb+srv://root:root@cluster0.fmgyw.mongodb.net/reservation-fb?retryWrites=true&w=majority",
+//mongodb://root:root@cluster0.fmgyw.mongodb.net/?retryWrites=true&w=majority
+mongoose.connect("mongodb+srv://root:root@cluster0.fmgyw.mongodb.net/?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
-      useFindAndModify: false,
+      useFindAndModify: true,
       useUnifiedTopology: true
     },(err) => {
         if (!err)

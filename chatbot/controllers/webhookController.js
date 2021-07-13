@@ -3,8 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const chatBotService = require("../services/chatBotService");
+const reservationController = require("../controllers/reservationController");
 var router = express.Router();
-var { Reservation } = require("../models/res_booking");
+
 //tokens
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -252,10 +253,11 @@ let handleReservationData = async (req, res) => {
     const peopleNumber = body.peopleNumber;
     const reserveDate = body.reserveDate;
     const reserveTime = body.reserveTime;
+    const note = body.note;
     const psid = body.psid;
 
     let response1 = {
-      text: "You have made a reservation. We are waiting to see you <3",
+      text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
     };
 
     let response2 = {
@@ -264,24 +266,25 @@ let handleReservationData = async (req, res) => {
         \nPhone number: ${phoneNumber}
         \nNumber of people: ${peopleNumber}
         \nReserve date: ${reserveDate}
-        \nReserve time: ${reserveTime}.`,
+        \nReserve time: ${reserveTime}
+        \nNote: ${note}.`,
     };
 
     await chatBotService.callSendAPI(psid, response1);
     await chatBotService.callSendAPI(psid, response2);
-
-  //   let rsvt = new Reservation({
-  //     name: customerName,
-  //     time: reserveTime,
-  //     date: reserveDate,
-  //     phone_number: phoneNumber,
-  //     people_number: peopleNumber,
-  //   });
-
-  //   rsvt.save((err, doc) => {
-  //     if (!err) { res.send(doc); }
-  //     else { console.log('Error in save appointments:' + JSON.stringify(err, undefined, 2)); }
-  // });
+    
+    var reservation = new Reservation({
+      psid: psid,
+      name: customerName,
+      arrive_at: reserveDate,
+      phone_number: phoneNumber,
+      people_number: peopleNumber,
+      note: note
+  });
+  await reservation.save((err, doc) => {
+      if (!err) { res.send(doc); }
+      else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
+  });
 
     return res
       .status(200)
