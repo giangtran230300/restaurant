@@ -283,9 +283,9 @@ let handleReservationData = async (req, res) => {
       people_number: peopleNumber,
       note: note
   });
-  reservation.collection.findOneAndUpdate({facebookId : facebookId}, user, {upsert:true}, function(err, user){
-    if (err) console.log(err);
-    else console.log('user saved');
+  await reservation.save((err, doc) => {
+      if (!err) { res.send(doc); }
+      else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
   });
 
     return res
