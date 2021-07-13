@@ -6,6 +6,8 @@ const chatBotService = require("../services/chatBotService");
 const reservationController = require("../controllers/reservationController");
 var router = express.Router();
 
+var Reservation = require('../models/booking');
+
 //tokens
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -281,9 +283,9 @@ let handleReservationData = async (req, res) => {
       people_number: peopleNumber,
       note: note
   });
-  await reservation.save((err, doc) => {
-      if (!err) { res.send(doc); }
-      else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
+  reservation.collection.findOneAndUpdate({facebookId : facebookId}, user, {upsert:true}, function(err, user){
+    if (err) console.log(err);
+    else console.log('user saved');
   });
 
     return res
