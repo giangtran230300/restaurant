@@ -284,7 +284,7 @@ let handleReservationData = async (req, res) => {
       note: note
   });
   reservation.save((err, doc) => {
-      if (!err) { res.send(doc); }
+      if (!err) { console.log('Saved to db') }
       else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
   });
 

@@ -257,6 +257,7 @@ let templateDDMenu = () => {
 };
 
 let templateManageReservation = () => {
+  
     let response = {
       attachment: {
         type: "template",
