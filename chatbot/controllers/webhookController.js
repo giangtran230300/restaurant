@@ -257,7 +257,7 @@ let handleReservationData = async (req, res) => {
     const peopleNumber = body.peopleNumber;
     const reserveDate = body.reserveDate;
     const reserveTime = body.reserveTime;
-    var reserveAt = new Date(reserveDate, reserveTime);
+    var reserveAt = reserveDate.concat(" ", reserveTime);
     const note = body.note;
     const psid = body.psid;
 
@@ -281,13 +281,13 @@ let handleReservationData = async (req, res) => {
     var reservation = new Reservation({
       psid: psid,
       name: customerName,
-      arrive_at: reserveDate,
+      arrive_at: new Date(reserveAt),
       phone_number: phoneNumber,
       people_number: peopleNumber,
       note: note
   });
   reservation.save((err, doc) => {
-      if (!err) { console.log('Saved to db' + reserveAt) }
+      if (!err) { console.log('Saved to db') }
       else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
   });
 
