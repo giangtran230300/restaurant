@@ -85,7 +85,7 @@ function handleReserve() {
       peopleNumber: $("#peopleNumber").val(),
       reserveDate: $("#reserveDate").val(),
       reserveTime: $("#reserveTime").val(),
-      //serviceChoose: $("#service").val()
+      note: $("#note").val(),
     };
 
     if (!check) {
