@@ -275,9 +275,11 @@ let handleReservationData = async (req, res) => {
         \nNote: ${note}.`,
     };
 
+    // confirm message
     await chatBotService.callSendAPI(psid, response1);
     await chatBotService.callSendAPI(psid, response2);
     
+    // save to db
     var reservation = new Reservation({
       psid: psid,
       name: customerName,
@@ -286,6 +288,7 @@ let handleReservationData = async (req, res) => {
       people_number: peopleNumber,
       note: note
   });
+
   reservation.save((err, doc) => {
       if (!err) { console.log('Saved to db') }
       else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
