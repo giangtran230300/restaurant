@@ -281,7 +281,7 @@ let handleReservationData = async (req, res) => {
     
     // save to db
     var reservation = new Reservation({
-      psid: psid,
+      _id: psid,
       name: customerName,
       arrive_at: new Date(reserveAt),
       phone_number: phoneNumber,

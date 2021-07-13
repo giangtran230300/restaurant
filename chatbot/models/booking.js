@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 var bookingSchema = mongoose.Schema({
-  psid: { type: String },
+//   psid: { type: String },
   name: { type: String },
   created_at: { type: Date, default: Date.now },
   arrive_at: { type: Date },
