@@ -16,10 +16,18 @@ let getReservationList = (req, res) => {
 )};
 
 let postReservation = (req, res) => {
+    let arrive =  new Intl.DateTimeFormat("en", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        day: "2-digit",
+        month: "short",
+        year: "numeric",
+      }).format(req.body.reserveDate);
     var reservation = new Reservation({
         psid: req.body.psid,
         name: req.body.customerName,
-        arrive_at: req.body.reserveDate,
+        arrive_at: arrive,
         phone_number: req.body.phoneNumber,
         people_number: req.body.peopleNumber,
         note: req.body.note,
