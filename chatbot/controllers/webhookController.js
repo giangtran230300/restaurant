@@ -1,13 +1,11 @@
 require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const request = require("request");
 const chatBotService = require("../services/chatBotService");
 const reservationController = require("../controllers/reservationController");
 var router = express.Router();
 
 // db
-const mongoose = require("mongoose");
 var Reservation = require("../models/booking");
 var Customer = require("../models/customer");
 
@@ -120,9 +118,9 @@ async function handlePostback(sender_psid, received_postback) {
     case "MANAGE_RESERVATION":
       await chatBotService.manageReservation(sender_psid);
       break;
-    // case "LATEST_RESERVATION":
-    //   await handleViewReservation(sender_psid);
-    //   break;
+    case "LATEST_RESERVATION":
+      await handleViewReservation(sender_psid);
+      break;
     // case "UPDATE_RESERVATION":
     //   await handleUpdateReservation(sender_psid, reservation_id);
     //   break;
@@ -377,5 +375,5 @@ module.exports = {
   persistentMenu: persistentMenu,
   handleReservationData: handleReservationData,
   // handleUpdateReservation: handleUpdateReservation,
-  // handleViewReservation: handleViewReservation
+  handleViewReservation: handleViewReservation
 };
