@@ -125,7 +125,7 @@ async function handlePostback(sender_psid, received_postback) {
     //   await handleUpdateReservation(sender_psid, reservation_id);
     //   break;
     case "CANCEL_RESERVATION":
-      await handleCancelReservation(sender_psid);;
+      await handleViewReservation(sender_psid);
       break;
     //talk to agent
     case "CARE_HELP":
@@ -412,7 +412,7 @@ let handleCancelReservation = (sender_psid) => {
       };
 
       let response2 = {
-        text: `---Canceld reservation---
+        text: `---Canceled reservation---
           \nPhone number: ${doc.phone_number}
           \nNumber of people: ${doc.people_number}
           \nReserve time: ${doc.arrive_at}
@@ -424,11 +424,9 @@ let handleCancelReservation = (sender_psid) => {
       chatBotService.callSendAPI(doc.psid, response2);
 
       console.log("Canceled reservation!");
-      console.log(doc);
     }
   });
 };
-
 
 module.exports = {
   postWebhook: postWebhook,
