@@ -124,9 +124,9 @@ async function handlePostback(sender_psid, received_postback) {
     // case "UPDATE_RESERVATION":
     //   await handleUpdateReservation(sender_psid, reservation_id);
     //   break;
-    // case "CANCEL_RESERVATION":
-    //   await handleCancelReservation(sender_psid, reservation_id);;
-    //   break;
+    case "CANCEL_RESERVATION":
+      await handleCancelReservation(sender_psid);;
+      break;
     //talk to agent
     case "CARE_HELP":
       await chatBotService.handleCareHelp(sender_psid);
@@ -270,7 +270,7 @@ let handleReservationData = async (req, res) => {
     const note = body.note;
 
     let response1 = {
-      text: "You have made a reservation. We are waiting to see you at our restaurant <3."
+      text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
     };
 
     let response2 = {
@@ -280,7 +280,7 @@ let handleReservationData = async (req, res) => {
         \nNumber of people: ${peopleNumber}
         \nReserve date: ${reserveDate}
         \nReserve time: ${reserveTime}
-        \nNote: ${note}.`
+        \nNote: ${note}.`,
     };
 
     // confirm message
@@ -340,43 +340,51 @@ let handleViewReservation = (sender_psid) => {
     if (err) console.log(err);
     else {
       let response1 = {
-        text: "Here is your latest reservation:"
+        text: "Here is your latest reservation:",
       };
-    
+
       let response2 = {
         text: `---Reservation information---
           \nPhone number: ${doc.phone_number}
           \nNumber of people: ${doc.people_number}
           \nReserve time: ${doc.arrive_at}
-          \nNote: ${doc.note}.`
+          \nNote: ${doc.note}.`,
       };
-    
+
       // send reservation messages
       chatBotService.callSendAPI(doc.psid, response1);
       chatBotService.callSendAPI(doc.psid, response2);
 
       console.log("send reservation to view.");
     }
-  }); 
+  });
 };
 
-// let handleUpdateReservation = async (sender_psid) => {
-//   const query = { "psid": sender_psid };
-//   const options = { upsert: false };
+let handleUpdateReservation = (sender_psid) => {};
 
-// }
+let handleCancelReservation = async (sender_psid) => {
+  // const query = {$and: [{'psid': sender_psid}, { '_id': reservation_id }]};;
+  const query = { 'psid': sender_psid };
+  const options = { upsert: false };
+  const update = {
+    $set: {
+      note: "Canceled"
+    },
+  };
 
-// let handleCancelReservation = async (sender_psid) => {
-//   const query = {$and: [{'psid': sender_psid}, { '_id': reservation_id }]};;
-//   const options = { upsert: false };
-//   const update = {
-//     $set: {
-//       "note": "customer canceled",
-//       "CustomerName.LastName": user.lastName,
-//       "PhoneNumber": phoneNumber,
-//     },
-//   };
-// }
+  Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
+    if (err) console.log(err);
+    else {
+      let response = {
+        text: "Cancel sucesfully.",
+      };
+
+      chatBotService.callSendAPI(doc.psid, response);
+
+      console.log("Cancel reservation!");
+    }
+  });
+};
 
 module.exports = {
   postWebhook: postWebhook,
@@ -387,6 +395,7 @@ module.exports = {
   messengerProfile: messengerProfile,
   persistentMenu: persistentMenu,
   handleReservationData: handleReservationData,
-  // handleUpdateReservation: handleUpdateReservation,
+  handleUpdateReservation: handleUpdateReservation,
   handleViewReservation: handleViewReservation,
+  handleCancelReservation: handleCancelReservation
 };
