@@ -404,7 +404,7 @@ let handleCancelReservation = (sender_psid) => {
   };
   const options = { upsert: false };
 
-  Reservation.collection.findOne(query, update, options, function (err, doc) {
+  Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
     if (err) console.log(err);
     else {
       let response1 = {
