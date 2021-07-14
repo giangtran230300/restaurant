@@ -298,7 +298,7 @@ let handleReservationData = async (req, res) => {
 
     const query = { PhoneNumber: phoneNumber };
     const update = {  
-      $setOnInsert: {
+      $set: {
         FirstName: user.firstName,
         LastName: user.lastName,
         PhoneNumber: phoneNumber,
