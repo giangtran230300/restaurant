@@ -120,7 +120,13 @@ async function handlePostback(sender_psid, received_postback) {
     case "MANAGE_RESERVATION":
       await chatBotService.manageReservation(sender_psid);
       break;
-
+    // case "LATEST_RESERVATION":
+    //   await ;
+    //   break;
+    // case "UPDATE_RESERVATION":
+    // case "CANCEL_RESERVATION"
+    //   await ;
+    //   break;
     // talk to agent
     case "CARE_HELP":
       await chatBotService.handleCareHelp(sender_psid);
@@ -285,7 +291,7 @@ let handleReservationData = async (req, res) => {
     var reservation = new Reservation({
       psid: psid,
       name: customerName,
-      arrive_at: new Date(reserveAt),
+      arrive_at: reserveAt,
       phone_number: phoneNumber,
       people_number: peopleNumber,
       note: note,
