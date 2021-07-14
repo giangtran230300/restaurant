@@ -289,12 +289,12 @@ let handleReservationData = async (req, res) => {
 
     // save to db
     var reservation = new Reservation({
-      psid: psid,
-      name: customerName,
-      arrive_at: reserveAt,
-      phone_number: phoneNumber,
-      people_number: peopleNumber,
-      note: note,
+      "psid": psid,
+      "name": customerName,
+      "arrive_at": reserveAt,
+      "phone_number": phoneNumber,
+      "people_number": peopleNumber,
+      "note": note,
     });
 
     reservation.save((err, doc) => {
@@ -305,9 +305,9 @@ let handleReservationData = async (req, res) => {
     const query = { PhoneNumber: phoneNumber };
     const update = {  
       $set: {
-        FirstName: user.firstName,
-        LastName: user.lastName,
-        PhoneNumber: phoneNumber,
+        "CustomerName.FirstName": user.firstName,
+        "CustomerName.LastName": user.lastName,
+        "PhoneNumber": phoneNumber,
       },
     };
     const options = { upsert: true };
