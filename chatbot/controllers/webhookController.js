@@ -121,13 +121,15 @@ async function handlePostback(sender_psid, received_postback) {
       await chatBotService.manageReservation(sender_psid);
       break;
     // case "LATEST_RESERVATION":
-    //   await ;
+    //   await handleViewReservation(sender_psid);
     //   break;
     // case "UPDATE_RESERVATION":
-    // case "CANCEL_RESERVATION"
-    //   await ;
+    //   await handleUpdateReservation(sender_psid, reservation_id);
     //   break;
-    // talk to agent
+    // case "CANCEL_RESERVATION":
+    //   await handleCancelReservation(sender_psid, reservation_id);;
+    //   break;
+    //talk to agent
     case "CARE_HELP":
       await chatBotService.handleCareHelp(sender_psid);
       break;
@@ -332,6 +334,30 @@ let handleReservationData = async (req, res) => {
   }
 };
 
+// let handleViewReservation = async (sender_psid) => {
+//   const query = { "psid": sender_psid };
+//   const options = { upsert: false };
+
+// }
+
+// let handleUpdateReservation = async (sender_psid) => {
+//   const query = { "psid": sender_psid };
+//   const options = { upsert: false };
+  
+// }
+
+// let handleCancelReservation = async (sender_psid) => {
+//   const query = {$and: [{'psid': sender_psid}, { '_id': reservation_id }]};;
+//   const options = { upsert: false };
+//   const update = {  
+//     $set: {
+//       "note": "customer canceled",
+//       "CustomerName.LastName": user.lastName,
+//       "PhoneNumber": phoneNumber,
+//     },
+//   };
+// }
+
 module.exports = {
   postWebhook: postWebhook,
   getWebhook: getWebhook,
@@ -341,4 +367,6 @@ module.exports = {
   messengerProfile: messengerProfile,
   persistentMenu: persistentMenu,
   handleReservationData: handleReservationData,
+  // handleUpdateReservation: handleUpdateReservation,
+  // handleViewReservation: handleViewReservation
 };

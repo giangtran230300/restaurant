@@ -213,18 +213,6 @@ let handleCareHelp = (sender_psid) => {
   });
 };
 
-let manageReservation = (sender_psid) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      let response = template.templateManageReservation();
-
-      await callSendAPI(sender_psid, response);
-      resolve("done");
-    } catch (e) {
-      reject(e);
-    }
-  });
-};
 module.exports = {
   callSendAPI: callSendAPI,
   handleGetStarted: handleGetStarted,
