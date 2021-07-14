@@ -118,7 +118,7 @@ let getUserName = (sender_psid) => {
           let user = {
             firstName: body.first_name,
             lastName: body.last_name,
-            username: firstName.concat(" ", lastName)
+            username: `${body.first_name} ${body.last_name}`
           };
           resolve(user);
         } else {
