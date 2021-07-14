@@ -362,29 +362,72 @@ let handleViewReservation = (sender_psid) => {
 
 let handleUpdateReservation = (sender_psid) => {};
 
-let handleCancelReservation = async (sender_psid) => {
-  // const query = {$and: [{'psid': sender_psid}, { '_id': reservation_id }]};;
-  const query = { 'psid': sender_psid };
-  const options = { upsert: false };
+// let handleCancelReservation = async (sender_psid) => {
+//   // const query = {$and: [{'psid': sender_psid}, { '_id': reservation_id }]};;
+//   const query = { 'psid': sender_psid };
+//   const options = { upsert: false };
+//   const update = {
+//     $set: {
+//       note: "Canceled"
+//     },
+//   };
+
+//   Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
+//     if (err) console.log(err);
+//     else {
+//       let response1 = {
+//         text: "Cancel sucesfully.",
+//       };
+
+//       let response2 = {
+//         text: `---Canceled reservation---
+//           \nPhone number: ${doc.phone_number}
+//           \nNumber of people: ${doc.people_number}
+//           \nReserve time: ${doc.arrive_at}
+//           \nNote: ${doc.note}.`,
+//       };
+
+//       chatBotService.callSendAPI(doc.psid, response1);
+//       chatBotService.callSendAPI(doc.psid, response2);
+
+//       console.log("Cancel reservation!");
+//     }
+//   });
+// };
+
+let handleCancelReservation = (sender_psid) => {
+  const query = { psid: sender_psid };
   const update = {
     $set: {
       note: "Canceled"
     },
   };
+  const options = { upsert: false };
 
-  Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
+  Reservation.collection.findOne(query, update, options, function (err, doc) {
     if (err) console.log(err);
     else {
-      let response = {
-        text: "Cancel sucesfully.",
+      let response1 = {
+        text: "Your reservation has been canceled.",
       };
 
-      chatBotService.callSendAPI(doc.psid, response);
+      let response2 = {
+        text: `---Canceld reservation---
+          \nPhone number: ${doc.phone_number}
+          \nNumber of people: ${doc.people_number}
+          \nReserve time: ${doc.arrive_at}
+          \nNote: ${doc.note}.`,
+      };
 
-      console.log("Cancel reservation!");
+      // send reservation messages
+      chatBotService.callSendAPI(doc.psid, response1);
+      chatBotService.callSendAPI(doc.psid, response2);
+
+      console.log("Canceled reservation!");
     }
   });
 };
+
 
 module.exports = {
   postWebhook: postWebhook,
