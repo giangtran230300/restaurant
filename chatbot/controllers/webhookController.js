@@ -291,10 +291,10 @@ let handleReservationData = async (req, res) => {
       note: note,
     });
 
-    // reservation.save((err, doc) => {
-    //   if (err) console.log(err);
-    //   else console.log("Reservation created.");
-    // });
+    reservation.save((err, doc) => {
+      if (err) console.log(err);
+      else console.log("Reservation created.");
+    });
 
     const query = { PhoneNumber: phoneNumber };
     const update = {  
