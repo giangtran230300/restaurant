@@ -341,7 +341,7 @@ let handleViewReservation = (sender_psid) => {
     else {
       console.log(doc);
       let response1 = {
-        text: "Here is your latest reservation:",
+        text: "Here is your latest reservation:"
       };
     
       let response2 = {
@@ -349,7 +349,7 @@ let handleViewReservation = (sender_psid) => {
           \nPhone number: ${doc.phone_number}
           \nNumber of people: ${doc.people_number}
           \nReserve time: ${doc.arrive_at}
-          \nNote: ${doc.note}.`,
+          \nNote: ${doc.note}.`
       };
     
       // confirm message
