@@ -189,16 +189,40 @@ let templateComboMenu = () => {
             title: "Set 1",
             subtitle: "199.000 đ",
             image_url: IMAGE_MENU_SET_1,
+            buttons: [
+              {
+                type: "web_url",
+                title: "Detail",
+                url: IMAGE_MENU_SET_1,
+                webview_height_ratio: "full",
+              },
+            ],
           },
           {
             title: "Set 2",
             subtitle: "299.000 đ",
             image_url: IMAGE_MENU_SET_2,
+            buttons: [
+              {
+                type: "web_url",
+                title: "Detail",
+                url: IMAGE_MENU_SET_2,
+                webview_height_ratio: "full",
+              },
+            ],
           },
           {
             title: "Set 3",
             subtitle: "399.000 đ",
             image_url: IMAGE_MENU_SET_3,
+            buttons: [
+              {
+                type: "web_url",
+                title: "Detail",
+                url: IMAGE_MENU_SET_3,
+                webview_height_ratio: "full",
+              },
+            ],
           },
         ],
       },
