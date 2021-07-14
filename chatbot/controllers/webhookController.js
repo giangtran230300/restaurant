@@ -290,29 +290,39 @@ let handleReservationData = async (req, res) => {
       note: note,
     });
 
-    reservation.save((err, doc) => {
-      if (err) console.log(err);
-      else console.log("Reservation created.");
+    // reservation.save((err, doc) => {
+    //   if (err) console.log(err);
+    //   else console.log("Reservation created.");
+    // });
+
+    var customer = new Customer({
+      CustomerName: customerName,
+      PhoneNumber: phoneNumber,
     });
 
-    let query = { PhoneNumber: phoneNumber };
-    let update = {  
+    customer.save((err, doc) => {
+      if (err) console.log(err);
+      else console.log("Customer saved.");
+    });
+
+    const query = { PhoneNumber: phoneNumber };
+    const update = {  
       $setOnInsert: {
         CustomerName: customerName,
         PhoneNumber: phoneNumber,
       },
     };
-    let options = { upsert: true };
+    const options = { upsert: true };
 
-    Customer.collection.findOneAndUpdate(
-      query,
-      update,
-      options,
-      function (err, doc) {
-        if (err) console.log(err);
-        else console.log("Customer saved.");
-      }
-    );
+    // Customer.collection.findOneAndUpdate(
+    //   query,
+    //   update,
+    //   options,
+    //   function (err, doc) {
+    //     if (err) console.log(err);
+    //     else console.log("Customer saved.");
+    //   }
+    // );
 
     return res
       .status(200)
