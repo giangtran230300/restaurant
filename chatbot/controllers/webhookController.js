@@ -341,7 +341,7 @@ let handleViewReservation = async (sender_psid) => {
     options,
     function (err, doc) {
       if (err) console.log(err);
-      else console.log("Send reservations.");
+      else console.log(doc);
     }
   );
 };
