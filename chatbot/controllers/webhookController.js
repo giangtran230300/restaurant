@@ -336,30 +336,27 @@ let handleViewReservation = async (sender_psid) => {
   const query = { psid: sender_psid };
   const options = { upsert: false };
 
-  let reservation = Reservation.collection.findOne(
-    query,
-    options,
-    function (err, doc) {
-      if (err) console.log(err);
-      else console.log(doc);
+  Reservation.collection.findOne(query, options, function (err, doc) {
+    if (err) console.log(err);
+    else {
+      console.log(doc);
+      let response1 = {
+        text: "Here is your latest reservation:",
+      };
+    
+      let response2 = {
+        text: `---Reservation information---
+          \nPhone number: ${doc.phone_number}
+          \nNumber of people: ${doc.people_number}
+          \nReserve time: ${doc.arrive_at}
+          \nNote: ${doc.note}.`,
+      };
+    
+      // confirm message
+      await chatBotService.callSendAPI(psid, response1);
+      await chatBotService.callSendAPI(psid, response2);
     }
-  );
-
-  let response1 = {
-    text: "Here is your latest reservation:",
-  };
-
-  let response2 = {
-    text: `---Reservation information---
-      \nPhone number: ${reservation.phone_number}
-      \nNumber of people: ${reservation.people_number}
-      \nReserve time: ${reservation.arrive_at}
-      \nNote: ${reservation.note}.`,
-  };
-
-  // confirm message
-  await chatBotService.callSendAPI(psid, response1);
-  await chatBotService.callSendAPI(psid, response2);
+  }); 
 };
 
 // let handleUpdateReservation = async (sender_psid) => {
@@ -390,5 +387,5 @@ module.exports = {
   persistentMenu: persistentMenu,
   handleReservationData: handleReservationData,
   // handleUpdateReservation: handleUpdateReservation,
-  handleViewReservation: handleViewReservation
+  handleViewReservation: handleViewReservation,
 };
