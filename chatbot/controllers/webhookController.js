@@ -339,7 +339,6 @@ let handleViewReservation = (sender_psid) => {
   Reservation.collection.findOne(query, options, function (err, doc) {
     if (err) console.log(err);
     else {
-      console.log(doc);
       let response1 = {
         text: "Here is your latest reservation:"
       };
@@ -352,9 +351,11 @@ let handleViewReservation = (sender_psid) => {
           \nNote: ${doc.note}.`
       };
     
-      // confirm message
+      // send reservation messages
       chatBotService.callSendAPI(doc.psid, response1);
       chatBotService.callSendAPI(doc.psid, response2);
+
+      console.log("send reservation to view.");
     }
   }); 
 };
