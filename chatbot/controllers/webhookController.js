@@ -424,6 +424,7 @@ let handleCancelReservation = (sender_psid) => {
       chatBotService.callSendAPI(doc.psid, response2);
 
       console.log("Canceled reservation!");
+      console.log(doc);
     }
   });
 };
