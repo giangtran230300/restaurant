@@ -269,13 +269,6 @@ let templateManageReservation = () => {
               subtitle: "Create/Update/Cancel",
               image_url: IMAGE_MENU_DESSERT,
               buttons: [
-                {
-                    type: "web_url",
-                    url: `${process.env.RESERVE_WEBVIEW_URL}`,
-                    title: "Reserve service",
-                    webview_height_ratio: "tall",
-                    messenger_extensions: true,
-                  },
                   {
                     type: "postback",
                     title: "Latest reservation",
