@@ -253,6 +253,8 @@ let handleReservationData = async (req, res) => {
   try {
     var body = req.body;
 
+    const psid = body.psid;
+    let username = await chatBotService.getUserName(psid);
     const customerName = body.customerName;
     const phoneNumber = body.phoneNumber;
     const peopleNumber = body.peopleNumber;
@@ -260,8 +262,7 @@ let handleReservationData = async (req, res) => {
     const reserveTime = body.reserveTime;
     var reserveAt = reserveDate.concat(" ", reserveTime);
     const note = body.note;
-    const psid = body.psid;
-
+    
     let response1 = {
       text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
     };
@@ -295,34 +296,24 @@ let handleReservationData = async (req, res) => {
     //   else console.log("Reservation created.");
     // });
 
-    var customer = new Customer({
-      CustomerName: customerName,
-      PhoneNumber: phoneNumber,
-    });
-
-    customer.save((err, doc) => {
-      if (err) console.log(err);
-      else console.log("Customer saved.");
-    });
-
     const query = { PhoneNumber: phoneNumber };
     const update = {  
       $setOnInsert: {
-        CustomerName: customerName,
+        FirstName: customerName,
         PhoneNumber: phoneNumber,
       },
     };
     const options = { upsert: true };
 
-    // Customer.collection.findOneAndUpdate(
-    //   query,
-    //   update,
-    //   options,
-    //   function (err, doc) {
-    //     if (err) console.log(err);
-    //     else console.log("Customer saved.");
-    //   }
-    // );
+    Customer.collection.findOneAndUpdate(
+      query,
+      update,
+      options,
+      function (err, doc) {
+        if (err) console.log(err);
+        else console.log("Customer saved.");
+      }
+    );
 
     return res
       .status(200)
