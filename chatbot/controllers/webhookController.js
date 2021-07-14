@@ -338,7 +338,6 @@ let handleViewReservation = async (sender_psid) => {
 
   Customer.collection.find(
     query,
-    update,
     options,
     function (err, doc) {
       if (err) console.log(err);
