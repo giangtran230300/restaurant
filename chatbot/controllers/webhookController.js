@@ -7,9 +7,9 @@ const reservationController = require("../controllers/reservationController");
 var router = express.Router();
 
 // db
-const mongoose = require('mongoose');
-var Reservation = require('../models/booking');
-var Customer = require('../models/customer');
+const mongoose = require("mongoose");
+var Reservation = require("../models/booking");
+var Customer = require("../models/customer");
 
 //tokens
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
@@ -279,33 +279,40 @@ let handleReservationData = async (req, res) => {
     // confirm message
     await chatBotService.callSendAPI(psid, response1);
     await chatBotService.callSendAPI(psid, response2);
-    
+
     // save to db
-  var reservation = new Reservation({
+    var reservation = new Reservation({
       psid: psid,
       name: customerName,
       arrive_at: new Date(reserveAt),
       phone_number: phoneNumber,
       people_number: peopleNumber,
-      note: note
-  });
+      note: note,
+    });
 
-  reservation.save((err, doc) => {
-      if (!err) { console.log('Saved to db') }
-      else { console.log('Error in Reservation Save :' + JSON.stringify(err, undefined, 2)); }
-  });
+    reservation.save((err, doc) => {
+      if (err) console.log(err);
+      else console.log("Reservation created.");
+    });
 
-  let query = {PhoneNumber: phoneNumber};
-  let update = { 
-    $setOnInsert: {
-      CustomerName: customerName,
-      PhoneNumber: phoneNumber
-    }
-  };
-  let options = { upsert: true };
+    let query = { PhoneNumber: phoneNumber };
+    let update = {  
+      $setOnInsert: {
+        CustomerName: customerName,
+        PhoneNumber: phoneNumber,
+      },
+    };
+    let options = { upsert: true };
 
-  Customer.findOneAndUpdate(query, update, options)
-  .catch(error => console.error(error));
+    Customer.collection.findOneAndUpdate(
+      query,
+      update,
+      options,
+      function (err, doc) {
+        if (err) console.log(err);
+        else console.log("Customer saved.");
+      }
+    );
 
     return res
       .status(200)
