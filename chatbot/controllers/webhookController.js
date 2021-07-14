@@ -332,7 +332,7 @@ let handleReservationData = async (req, res) => {
   }
 };
 
-let handleViewReservation = async (sender_psid) => {
+let handleViewReservation = (sender_psid) => {
   const query = { psid: sender_psid };
   const options = { upsert: false };
 
@@ -353,8 +353,8 @@ let handleViewReservation = async (sender_psid) => {
       };
     
       // confirm message
-      await chatBotService.callSendAPI(psid, response1);
-      await chatBotService.callSendAPI(psid, response2);
+      chatBotService.callSendAPI(psid, response1);
+      chatBotService.callSendAPI(psid, response2);
     }
   }); 
 };
