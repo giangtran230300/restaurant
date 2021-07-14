@@ -116,8 +116,8 @@ let getUserName = (sender_psid) => {
           body = JSON.parse(body);
           //let username = `${body.first_name} ${body.last_name}`;
           let user = {
-            firstName: firstName || body.first_name,
-            lastName: lastName || body.last_name,
+            firstName: body.first_name,
+            lastName: body.last_name,
             username: firstName.concat(" ", lastName)
           };
           resolve(user);
