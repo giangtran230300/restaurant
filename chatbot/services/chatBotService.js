@@ -213,7 +213,7 @@ let handleCareHelp = (sender_psid) => {
   });
 };
 
-let manageViewReservation = (sender_psid) => {
+let manageReservation = (sender_psid) => {
   return new Promise(async (resolve, reject) => {
     try {
       let response = template.templateManageReservation();
