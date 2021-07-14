@@ -132,8 +132,8 @@ let getUserName = (sender_psid) => {
 let handleGetStarted = (sender_psid) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let username = await getUserName(sender_psid);
-      let response1 = { text: `Hello ${username}. Wellcome to our restaurant` };
+      let user = await getUserName(sender_psid);
+      let response1 = { text: `Hello ${user.username}. Wellcome to our restaurant` };
       let response2 = template.templpateGetStartedButton();
 
       await callSendAPI(sender_psid, response1);

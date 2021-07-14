@@ -254,7 +254,7 @@ let handleReservationData = async (req, res) => {
     var body = req.body;
 
     const psid = body.psid;
-    let username = await chatBotService.getUserName(psid);
+    let user = await chatBotService.getUserName(psid);
     const customerName = body.customerName;
     const phoneNumber = body.phoneNumber;
     const peopleNumber = body.peopleNumber;
@@ -299,7 +299,8 @@ let handleReservationData = async (req, res) => {
     const query = { PhoneNumber: phoneNumber };
     const update = {  
       $setOnInsert: {
-        FirstName: customerName,
+        FirstName: user.firstName,
+        LastName: user.lastName,
         PhoneNumber: phoneNumber,
       },
     };
