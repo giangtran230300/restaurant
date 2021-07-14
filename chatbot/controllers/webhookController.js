@@ -270,7 +270,7 @@ let handleReservationData = async (req, res) => {
     const note = body.note;
 
     let response1 = {
-      text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
+      text: "You have made a reservation. We are waiting to see you at our restaurant <3."
     };
 
     let response2 = {
@@ -280,7 +280,7 @@ let handleReservationData = async (req, res) => {
         \nNumber of people: ${peopleNumber}
         \nReserve date: ${reserveDate}
         \nReserve time: ${reserveTime}
-        \nNote: ${note}.`,
+        \nNote: ${note}.`
     };
 
     // confirm message
@@ -353,8 +353,8 @@ let handleViewReservation = (sender_psid) => {
       };
     
       // confirm message
-      chatBotService.callSendAPI(psid, response1);
-      chatBotService.callSendAPI(psid, response2);
+      chatBotService.callSendAPI(doc.psid, response1);
+      chatBotService.callSendAPI(doc.psid, response2);
     }
   }); 
 };
