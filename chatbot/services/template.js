@@ -194,7 +194,7 @@ let templateComboMenu = () => {
                 type: "web_url",
                 title: "Detail",
                 url: IMAGE_MENU_SET_1,
-                webview_height_ratio: "full",
+                webview_height_ratio: "full"
               },
             ],
           },
@@ -207,7 +207,7 @@ let templateComboMenu = () => {
                 type: "web_url",
                 title: "Detail",
                 url: IMAGE_MENU_SET_2,
-                webview_height_ratio: "full",
+                webview_height_ratio: "full"
               },
             ],
           },
@@ -220,7 +220,7 @@ let templateComboMenu = () => {
                 type: "web_url",
                 title: "Detail",
                 url: IMAGE_MENU_SET_3,
-                webview_height_ratio: "full",
+                webview_height_ratio: "full"
               },
             ],
           },
