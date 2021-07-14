@@ -12,8 +12,8 @@ let now =  new Intl.DateTimeFormat("en", {
 var bookingSchema = mongoose.Schema({
   psid: { type: String, required: true },
   name: { type: String, required: true },
-  created_at: { type: Date, default: now },
-  arrive_at: { type: Date, required: true },
+  created_at: { type: String, default: now },
+  arrive_at: { type: String, required: true },
   phone_number: { type: String, required: true },
   people_number: { type: String, required: true },
   note: { type: String },
