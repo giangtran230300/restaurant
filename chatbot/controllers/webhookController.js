@@ -336,7 +336,7 @@ let handleViewReservation = async (sender_psid) => {
   const query = { psid: sender_psid };
   const options = { upsert: false };
 
-  var reservation = Reservation.collection.findOne(
+  let reservation = Reservation.collection.findOne(
     query,
     options,
     function (err, doc) {
