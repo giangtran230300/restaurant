@@ -270,7 +270,7 @@ let handleReservationData = async (req, res) => {
     const reserveTime = body.reserveTime;
     var reserveAt = reserveDate.concat(" ", reserveTime);
     const note = body.note;
-    
+
     let response1 = {
       text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
     };
@@ -291,12 +291,12 @@ let handleReservationData = async (req, res) => {
 
     // save to db
     var reservation = new Reservation({
-      "psid": psid,
-      "name": customerName,
-      "arrive_at": reserveAt,
-      "phone_number": phoneNumber,
-      "people_number": peopleNumber,
-      "note": note,
+      psid: psid,
+      name: customerName,
+      arrive_at: reserveAt,
+      phone_number: phoneNumber,
+      people_number: peopleNumber,
+      note: note,
     });
 
     reservation.save((err, doc) => {
@@ -305,11 +305,11 @@ let handleReservationData = async (req, res) => {
     });
 
     const query = { PhoneNumber: phoneNumber };
-    const update = {  
+    const update = {
       $set: {
         "CustomerName.FirstName": user.firstName,
         "CustomerName.LastName": user.lastName,
-        "PhoneNumber": phoneNumber,
+        PhoneNumber: phoneNumber,
       },
     };
     const options = { upsert: true };
@@ -334,22 +334,31 @@ let handleReservationData = async (req, res) => {
   }
 };
 
-// let handleViewReservation = async (sender_psid) => {
-//   const query = { "psid": sender_psid };
-//   const options = { upsert: false };
+let handleViewReservation = async (sender_psid) => {
+  const query = { psid: sender_psid };
+  const options = { upsert: false };
 
-// }
+  Customer.collection.find(
+    query,
+    update,
+    options,
+    function (err, doc) {
+      if (err) console.log(err);
+      else console.log("Send reservations.");
+    }
+  );
+};
 
 // let handleUpdateReservation = async (sender_psid) => {
 //   const query = { "psid": sender_psid };
 //   const options = { upsert: false };
-  
+
 // }
 
 // let handleCancelReservation = async (sender_psid) => {
 //   const query = {$and: [{'psid': sender_psid}, { '_id': reservation_id }]};;
 //   const options = { upsert: false };
-//   const update = {  
+//   const update = {
 //     $set: {
 //       "note": "customer canceled",
 //       "CustomerName.LastName": user.lastName,
