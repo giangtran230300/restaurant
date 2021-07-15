@@ -241,6 +241,9 @@ let handleReservationData = async (req, res) => {
     var reserveAt = reserveDate.concat(" ", reserveTime);
     const note = body.note;
 
+    console.log(reserveDate);
+    console.log(reserveTime);
+    console.log(reserveAt);
     let response1 = {
       text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
     };
@@ -269,10 +272,10 @@ let handleReservationData = async (req, res) => {
       note: note,
     });
 
-    reservation.save((err, doc) => {
-      if (err) console.log(err);
-      else console.log("Reservation created.");
-    });
+    // reservation.save((err, doc) => {
+    //   if (err) console.log(err);
+    //   else console.log("Reservation created.");
+    // });
 
     const query = { PhoneNumber: phoneNumber };
     const update = {
