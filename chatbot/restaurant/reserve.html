@@ -12,6 +12,19 @@
     <script src="/js/reserve.js"></script>
   </head>
   <body>
+    <script>
+      function dateFormat(){
+        d=new Date(document.getElementById("dt").value);
+        dt=d.getDate();
+        mn=d.getMonth();
+        mn++;
+        yy=d.getFullYear();
+        document.getElementById("ndt").value=dt+"/"+mn+"/"+yy
+        document.getElementById("ndt").hidden=false;
+        document.getElementById("dt").hidden=true;
+      }
+    </script>
+
     <!-- <form action="/reserve-ajax" method="post" id="form-reserve"> -->
     <div class="container fix-height">
       <div class="row">
@@ -64,6 +77,7 @@
               id="reserveDate"
               class="form-control"
               placeholder="dd/mm/yyyy"
+              onchange="dateFormat();"
             />
             <div class="invalid-feedback">
               Please choose your reserve date.
