@@ -355,6 +355,7 @@ let handleViewReservation = (sender_psid) => {
       chatBotService.callSendAPI(doc.psid, response1);
       chatBotService.callSendAPI(doc.psid, response2);
 
+      console.log(doc);
       console.log("send reservation to view.");
     }
   });
@@ -371,16 +372,14 @@ let handleCancelReservation = (sender_psid) => {
   };
   const options = { upsert: false };
 
-  let response1 = {
-    text: "Your reservation has been canceled.",
-  };
-  chatBotService.callSendAPI(sender_psid, response1);
-
   Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
     if (err) console.log(err);
     else {
       console.log(doc);
-    
+  
+      let response1 = {
+        text: "Your reservation has been canceled.",
+      };
       let response2 = {
         text: `---Canceled reservation information---
           \nPhone number: ${doc.phone_number}
@@ -389,6 +388,7 @@ let handleCancelReservation = (sender_psid) => {
       };
 
       // send cancel messages
+      chatBotService.callSendAPI(sender_psid, response1);
       chatBotService.callSendAPI(sender_psid, response2);
 
       console.log("Cancel reservation");
