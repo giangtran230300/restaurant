@@ -335,7 +335,6 @@ let handleUpdateReservation = (sender_psid) => {
 };
 
 let handleCancelReservation = (sender_psid) => {
-  const today = new Date.now();
   const query = {
     $and: [
       { psid: sender_psid },
