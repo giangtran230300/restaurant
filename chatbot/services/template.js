@@ -319,11 +319,13 @@ let templateManageCancelReservation = () => {
     text: "You sure to cancel this reservation?",
     quick_replies: [
       {
+        type: "postback",
         content_type: "text",
         title: "Yes",
         payload: "CANCEL_YES",
       },
       {
+        type: "postback",
         content_type: "text",
         title: "No",
         payload: "CANCEL_NO",
