@@ -366,7 +366,7 @@ let handleUpdateReservation = (sender_psid) => {
 };
 
 let handleCancelReservation = (sender_psid) => {
-  const query = { psid: sender_psid };
+  const query = {$and: [{'psid': sender_psid}, {'checkin': false}, {'note': { $ne: Canceled }}]};;
   const update = {
     $set: { note: "Canceled" },
   };
