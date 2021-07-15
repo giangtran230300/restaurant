@@ -127,7 +127,7 @@ async function handlePostback(sender_psid, received_postback) {
     case "CANCEL_RESERVATION":
       await chatBotService.manageCancelReservation(sender_psid);
       break;
-    case "CANCEL_RESERVATION":
+    case "CANCEL_YES":
       await handleCancelReservation(sender_psid);
       break;
     //talk to agent
