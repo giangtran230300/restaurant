@@ -72,13 +72,14 @@
             <label for="reserveDate"
               >Reserve date (<span style="color: red">*</span>):</label
             >
-            <input
+            <!-- <input
               type="date"
               id="reserveDate"
               class="form-control"
               placeholder="dd/mm/yyyy"
               onchange="dateFormat();"
-            />
+            /> -->
+            <input class="datepicker" data-date-format="mm/dd/yyyy">
             <div class="invalid-feedback">
               Please choose your reserve date.
             </div>
