@@ -404,28 +404,14 @@ let handleCancelReservation = (sender_psid) => {
   };
   const options = { upsert: false };
 
-  Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
+  var cancel = Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
     if (err) console.log(err);
     else {
-      let response1 = {
-        text: "Your reservation has been canceled.",
-      };
-
-      let response2 = {
-        text: `---Canceled reservation---
-          \nPhone number: ${doc.phone_number}
-          \nNumber of people: ${doc.people_number}
-          \nReserve time: ${doc.arrive_at}
-          \nNote: ${doc.note}.`,
-      };
-
-      // send reservation messages
-      chatBotService.callSendAPI(doc.psid, response1);
-      chatBotService.callSendAPI(doc.psid, response2);
-
       console.log("Canceled reservation!");
     }
   });
+
+  console.log(cancel);
 };
 
 module.exports = {
