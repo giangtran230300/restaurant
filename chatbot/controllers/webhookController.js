@@ -72,18 +72,26 @@ async function handleMessage(sender_psid, received_message) {
 
   // Set the response based on the postback payload
   switch (payload) {
-    // Restaurant menu
-    case "CANCEL_YES":
-      await handleCancelReservation(sender_psid);
-      break;
+    // Reservation manage
+    // show
     case "LATEST_RESERVATION":
       await handleViewReservation(sender_psid);
       break;
+
+    // update
     // case "UPDATE_RESERVATION":
     //   await handleUpdateReservation(sender_psid, reservation_id);
     //   break;
+    // case "UPDATE_YES":
+    //   await handleCancelReservation(sender_psid);
+    //   break;
+
+    //cancel
     case "CANCEL_RESERVATION":
       await chatBotService.manageCancelReservation(sender_psid);
+      break;
+    case "CANCEL_YES":
+      await handleCancelReservation(sender_psid);
       break;
   }
 }

@@ -321,11 +321,23 @@ let templateManageCancelReservation = () => {
   return quick_list;
 };
 
-let noCancelReservation = () => {
-  let response = {
-   "text": "No."
+let templateManageUpdateReservation = () => {
+  var quick_list = {
+    text: "You sure to update on this reservation?",
+    quick_replies: [
+      {
+        content_type: "text",
+        title: "Yes",
+        payload: "UPDATE_YES",
+      },
+      {
+        content_type: "text",
+        title: "No",
+        payload: "UPDATE_NO",
+      }
+    ],
   };
-  return response;
+  return quick_list;
 };
 
 module.exports = {
@@ -336,4 +348,5 @@ module.exports = {
   templateDishesMenu: templateDishesMenu,
   templateManageReservation: templateManageReservation,
   templateManageCancelReservation: templateManageCancelReservation,
+  templateManageUpdateReservation: templateManageUpdateReservation
 };
