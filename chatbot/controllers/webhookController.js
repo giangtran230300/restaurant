@@ -360,58 +360,40 @@ let handleViewReservation = (sender_psid) => {
   });
 };
 
-let handleUpdateReservation = (sender_psid) => {};
-
-// let handleCancelReservation = async (sender_psid) => {
-//   // const query = {$and: [{'psid': sender_psid}, { '_id': reservation_id }]};;
-//   const query = { 'psid': sender_psid };
-//   const options = { upsert: false };
-//   const update = {
-//     $set: {
-//       note: "Canceled"
-//     },
-//   };
-
-//   Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
-//     if (err) console.log(err);
-//     else {
-//       let response1 = {
-//         text: "Cancel sucesfully.",
-//       };
-
-//       let response2 = {
-//         text: `---Canceled reservation---
-//           \nPhone number: ${doc.phone_number}
-//           \nNumber of people: ${doc.people_number}
-//           \nReserve time: ${doc.arrive_at}
-//           \nNote: ${doc.note}.`,
-//       };
-
-//       chatBotService.callSendAPI(doc.psid, response1);
-//       chatBotService.callSendAPI(doc.psid, response2);
-
-//       console.log("Cancel reservation!");
-//     }
-//   });
-// };
+let handleUpdateReservation = (sender_psid) => {
+  //const query = {$and: [{'psid': sender_psid}, { '_id': reservation_id }]};;
+};
 
 let handleCancelReservation = (sender_psid) => {
   const query = { psid: sender_psid };
   const update = {
-    $set: {
-      note: "Canceled"
-    },
+    $set: { note: "Canceled" },
   };
   const options = { upsert: false };
 
-  var cancel = Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
+  Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
     if (err) console.log(err);
     else {
-      console.log("Canceled reservation!");
+      console.log(doc);
+      let response1 = {
+        text: "Your reservation has been canceled.",
+      };
+
+      let response2 = {
+        text: `---Canceled reservation information---
+          \nPhone number: ${doc.phone_number}
+          \nNumber of people: ${doc.people_number}
+          \nReserve time: ${doc.arrive_at}
+          \nNote: ${doc.note}.`,
+      };
+
+      // send cancel messages
+      chatBotService.callSendAPI(doc.psid, response1);
+      chatBotService.callSendAPI(doc.psid, response2);
+
+      console.log("Cancel reservation");
     }
   });
-
-  console.log(cancel);
 };
 
 module.exports = {
@@ -425,5 +407,5 @@ module.exports = {
   handleReservationData: handleReservationData,
   handleUpdateReservation: handleUpdateReservation,
   handleViewReservation: handleViewReservation,
-  handleCancelReservation: handleCancelReservation
+  handleCancelReservation: handleCancelReservation,
 };
