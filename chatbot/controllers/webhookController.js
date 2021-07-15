@@ -240,14 +240,6 @@ let handleReservationData = async (req, res) => {
     const reserveTime = body.reserveTime;
     var reserveAt = reserveDate.concat(" ", reserveTime);
     const note = body.note;
-    let arrive =  new Intl.DateTimeFormat("en", {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    }).format(reserveAt);
 
     let response1 = {
       text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
@@ -271,7 +263,7 @@ let handleReservationData = async (req, res) => {
     var reservation = new Reservation({
       psid: psid,
       name: customerName,
-      arrive_at: arrive,
+      arrive_at: reserveAt,
       phone_number: phoneNumber,
       people_number: peopleNumber,
       note: note,
