@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
 // JS here
+app.set('view engine', 'ejs');
 app.use(express.static('./chatbot/restaurant'));
 
 // routes

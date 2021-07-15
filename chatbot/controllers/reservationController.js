@@ -7,7 +7,7 @@ var Reservation = require('../models/booking');
 let getReservationList = (req, res) => {
     Reservation.find((err, docs) => {
         if (!err){ 
-             res.send(docs); 
+             res.render("booking", {reservations: docs}); 
         }
         else {
             console.log('Error in Retriving Reservation :' + JSON.stringify(err, undefined, 2)); 
