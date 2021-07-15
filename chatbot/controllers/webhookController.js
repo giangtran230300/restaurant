@@ -385,8 +385,7 @@ let handleCancelReservation = (sender_psid) => {
         text: `---Canceled reservation information---
           \nPhone number: ${doc.phone_number}
           \nNumber of people: ${doc.people_number}
-          \nReserve time: ${doc.arrive_at}
-          \nNote: ${doc.note}.`,
+          \nReserve time: ${doc.arrive_at}.`,
       };
 
       // send cancel messages
