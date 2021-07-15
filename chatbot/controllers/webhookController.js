@@ -389,7 +389,7 @@ let handleCancelReservation = (sender_psid) => {
       };
 
       // send cancel messages
-      chatBotService.callSendAPI(doc.psid, response2);
+      chatBotService.callSendAPI(sender_psid, response2);
 
       console.log("Cancel reservation");
     }
