@@ -382,14 +382,14 @@ let handleCancelReservation = (sender_psid) => {
       };
       let response2 = {
         text: `---Canceled reservation information---
-          \nPhone number: ${doc.phone_number}
-          \nNumber of people: ${doc.people_number}
-          \nReserve time: ${doc.arrive_at}.`,
+          \nPhone number: ${doc.value.phone_number}
+          \nNumber of people: ${doc.value.people_number}
+          \nReserve time: ${doc.value.arrive_at}.`,
       };
 
       // send cancel messages
-      chatBotService.callSendAPI(sender_psid, response1);
-      chatBotService.callSendAPI(sender_psid, response2);
+      chatBotService.callSendAPI(doc.value.sender_psid, response1);
+      chatBotService.callSendAPI(doc.value.sender_psid, response2);
 
       console.log("Cancel reservation");
     }
