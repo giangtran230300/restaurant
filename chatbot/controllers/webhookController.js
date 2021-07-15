@@ -68,7 +68,7 @@ let getWebhook = (req, res) => {
 async function handleMessage(sender_psid, received_message) {
   let response;
     // Get the payload for the postback
-    let payload = received_message.payload;
+    let payload = received_message.quick_reply.payload;
 
     // Set the response based on the postback payload
    switch (payload) {
