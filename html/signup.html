@@ -1,7 +1,7 @@
 <html>
 <head>
     <title> Restaurant</title>
-    <link rel="stylesheet" type="text/css" href="css/signup.css">
+    <link rel="stylesheet" type="text/css" href="../css/signup.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -66,17 +66,18 @@
         <div class="container">
             <h1>Register</h1>
             <h6>Please fill in this form to create an account.</h6>
+            {{msg}}
             <form action="/signup" method="post">
                 <hr>
 
-                <label for="name"><b>User name</b></label>
-                <input type="text" placeholder="User name" name="name" id="name" required>
+                <label for="name"><b>customer name</b></label>
+                <input type="text" placeholder="customer name" name="name" id="name" required>
 
                 <label for="number"><b>Phone number</b></label>
                 <input type="text" placeholder="Phone number" name="number" id="number" required>
 
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter email" name="email" id="email" >
+                <input type="text" placeholder="Enter email" name="email" id="email" required>
 
                 <label for="password"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" id="password" required>

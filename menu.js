@@ -1,13 +1,17 @@
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb+srv://root:root@cluster0.fmgyw.mongodb.net/restaurantweb/?retryWrites=true&w=majority";
+var express = require('express');
+var bodyParser = require('body-parser');
 
-MongoClient.connect(url, function (err, db) {
-    if (err) throw err;
-    var dbo = db.db("reporting-administrating-sys");
-    dbo.collection("items").find({}).toArray(function (err, result) {
-        if (err) throw err;
-        console.log(result);
-        db.close();
-    });
+var Database = require('./db/database');
+var routes = require('./routes/controller');
+
+var app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
+
+// Website routes
+app.use('/', routes);
+
+app.listen(3000, function () {
+    console.log("Starting at port 3000...");
 });
-
