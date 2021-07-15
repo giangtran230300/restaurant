@@ -67,22 +67,16 @@ let getWebhook = (req, res) => {
 // Handles messages events
 async function handleMessage(sender_psid, received_message) {
   let response;
+    // Get the payload for the postback
+    let payload = received_postback.payload;
 
-  // Check if the message contains text
-  if (received_message.text) {
-    // Create the payload for a basic text message
-    response = {
-      text: `You sent the message: "${received_message.text}"`,
-    };
-  } else if (received_message.attachments) {
-    // Gets the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
-    response = {};
-  }
-
-  // Sends the response message
-  chatBotService.callSendAPI(sender_psid, response);
-}
+    // Set the response based on the postback payload
+   switch (payload) {
+    // Restaurant menu
+    case "CANCEL_YES":
+      await handleCancelReservation(sender_psid);
+      break;
+}};
 
 // Handles messaging_postbacks events
 async function handlePostback(sender_psid, received_postback) {
@@ -126,9 +120,6 @@ async function handlePostback(sender_psid, received_postback) {
     //   break;
     case "CANCEL_RESERVATION":
       await chatBotService.manageCancelReservation(sender_psid);
-      break;
-    case "CANCEL_YES":
-      await handleCancelReservation(sender_psid);
       break;
     //talk to agent
     case "CARE_HELP":
