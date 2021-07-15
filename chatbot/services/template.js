@@ -5,9 +5,12 @@ const IMAGE_MENU = "";
 const IMAGE_MENU_APPETIZER = "";
 const IMAGE_MENU_MAIN = "";
 const IMAGE_MENU_DESSERT = "";
-const IMAGE_MENU_SET_1 = "https://cdn.lauphan.com/photo-storage/myFile-1617847170490.jpeg";
-const IMAGE_MENU_SET_2 = "https://cdn.lauphan.com/photo-storage/myFile-1617847257643.jpeg";
-const IMAGE_MENU_SET_3 = "https://cdn.lauphan.com/photo-storage/myFile-1617847283857.jpeg";
+const IMAGE_MENU_SET_1 =
+  "https://cdn.lauphan.com/photo-storage/myFile-1617847170490.jpeg";
+const IMAGE_MENU_SET_2 =
+  "https://cdn.lauphan.com/photo-storage/myFile-1617847257643.jpeg";
+const IMAGE_MENU_SET_3 =
+  "https://cdn.lauphan.com/photo-storage/myFile-1617847283857.jpeg";
 const IMAGE_SERVICE = "";
 const IMAGE_ROOM = "";
 
@@ -194,7 +197,7 @@ let templateComboMenu = () => {
                 type: "web_url",
                 title: "Detail",
                 url: IMAGE_MENU_SET_1,
-                webview_height_ratio: "full"
+                webview_height_ratio: "full",
               },
             ],
           },
@@ -207,7 +210,7 @@ let templateComboMenu = () => {
                 type: "web_url",
                 title: "Detail",
                 url: IMAGE_MENU_SET_2,
-                webview_height_ratio: "full"
+                webview_height_ratio: "full",
               },
             ],
           },
@@ -220,7 +223,7 @@ let templateComboMenu = () => {
                 type: "web_url",
                 title: "Detail",
                 url: IMAGE_MENU_SET_3,
-                webview_height_ratio: "full"
+                webview_height_ratio: "full",
               },
             ],
           },
@@ -241,27 +244,32 @@ let templateDDMenu = () => {
           {
             title: "Cocacola",
             subtitle: "15.000 đ",
-            image_url: "http://img.websosanh.vn/v2/users/wss/images/tet-loc-6-lon-coca-cola/xtmwn931w7fbz.jpg",
+            image_url:
+              "http://img.websosanh.vn/v2/users/wss/images/tet-loc-6-lon-coca-cola/xtmwn931w7fbz.jpg",
           },
           {
             title: "Pepsi",
             subtitle: "15.000 đ",
-            image_url: "https://cdn.tgdd.vn/Products/Images/2443/76467/bhx/nuoc-ngot-pepsi-cola-330ml-202008131510316142.JPG",
+            image_url:
+              "https://cdn.tgdd.vn/Products/Images/2443/76467/bhx/nuoc-ngot-pepsi-cola-330ml-202008131510316142.JPG",
           },
           {
             title: "Fanta",
             subtitle: "15.000 đ",
-            image_url: "https://cdn.tgdd.vn/Products/Images/2443/76453/bhx/nuoc-ngot-fanta-vi-cam-lon-330ml-201812281420358633.jpg",
+            image_url:
+              "https://cdn.tgdd.vn/Products/Images/2443/76453/bhx/nuoc-ngot-fanta-vi-cam-lon-330ml-201812281420358633.jpg",
           },
           {
             title: "Champagne",
             subtitle: "150.000 đ",
-            image_url: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1606928160-tc-bollinger-1606928114.jpg",
+            image_url:
+              "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1606928160-tc-bollinger-1606928114.jpg",
           },
           {
             title: "Smoothie",
             subtitle: "45.000 đ",
-            image_url: "https://hips.hearstapps.com/del.h-cdn.co/assets/16/19/1462829771-sunshine-daydream.jpg",
+            image_url:
+              "https://hips.hearstapps.com/del.h-cdn.co/assets/16/19/1462829771-sunshine-daydream.jpg",
           },
         ],
       },
@@ -271,41 +279,59 @@ let templateDDMenu = () => {
 };
 
 let templateManageReservation = () => {
-  
-    let response = {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "Manage reservations",
-              subtitle: "View/Update/Cancel your nearest reservation.",
-              image_url: IMAGE_MENU_DESSERT,
-              buttons: [
-                  {
-                    type: "postback",
-                    title: "Latest reservation",
-                    payload: "LATEST_RESERVATION",
-                  },
-                  {
-                    type: "postback",
-                    title: "Update reservation",
-                    payload: "UPDATE_RESERVATION",
-                  },
-                  {
-                    type: "postback",
-                    title: "Cancel reservation",
-                    payload: "CANCEL_RESERVATION",
-                  },  
-              ],
-            },
-          ],
-        },
+  let response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "generic",
+        elements: [
+          {
+            title: "Manage reservations",
+            subtitle: "View/Update/Cancel your nearest reservation.",
+            image_url: IMAGE_MENU_DESSERT,
+            buttons: [
+              {
+                type: "postback",
+                title: "View",
+                payload: "LATEST_RESERVATION",
+              },
+              {
+                type: "postback",
+                title: "Update",
+                payload: "UPDATE_RESERVATION",
+              },
+              {
+                type: "postback",
+                title: "Cancel",
+                payload: "CANCEL_RESERVATION",
+              },
+            ],
+          },
+        ],
       },
-    };
-    return response;
+    },
   };
+  return response;
+};
+
+let templateManageCancelReservation = () => {
+  var quick_list = {
+    text: "You sure to cancel this reservation?",
+    quick_replies: [
+      {
+        content_type: "text",
+        title: "Yes",
+        payload: "CANCEL_YES",
+      },
+      {
+        content_type: "text",
+        title: "No",
+        payload: "CANCEL_NO",
+      }
+    ],
+  };
+  return quick_list;
+};
 
 module.exports = {
   templpateGetStartedButton: templpateGetStartedButton,
@@ -314,4 +340,5 @@ module.exports = {
   templateComboMenu: templateComboMenu,
   templateDishesMenu: templateDishesMenu,
   templateManageReservation: templateManageReservation,
+  templateManageCancelReservation: templateManageCancelReservation,
 };

@@ -125,6 +125,9 @@ async function handlePostback(sender_psid, received_postback) {
     //   await handleUpdateReservation(sender_psid, reservation_id);
     //   break;
     case "CANCEL_RESERVATION":
+      await chatBotService.manageCancelReservation(sender_psid);
+      break;
+    case "CANCEL_RESERVATION":
       await handleCancelReservation(sender_psid);
       break;
     //talk to agent
@@ -333,7 +336,13 @@ let handleReservationData = async (req, res) => {
 };
 
 let handleViewReservation = (sender_psid) => {
-  const query = {$and: [{'psid': sender_psid}, {'checkin': false}, {'note': { $ne: "Canceled"}}]};
+  const query = {
+    $and: [
+      { psid: sender_psid },
+      { checkin: false },
+      { note: { $ne: "Canceled" } },
+    ],
+  };
   const options = { upsert: false };
 
   Reservation.collection.findOne(query, options, function (err, doc) {
@@ -352,8 +361,8 @@ let handleViewReservation = (sender_psid) => {
       };
 
       // send reservation messages
-      chatBotService.callSendAPI(doc.psid, response1);
-      chatBotService.callSendAPI(doc.psid, response2);
+      chatBotService.callSendAPI(sender_psid, response1);
+      chatBotService.callSendAPI(sender_psid, response2);
 
       console.log(doc);
       console.log("send reservation to view.");
@@ -366,34 +375,44 @@ let handleUpdateReservation = (sender_psid) => {
 };
 
 let handleCancelReservation = (sender_psid) => {
-  const query = {$and: [{'psid': sender_psid}, {'checkin': false}, {'note': { $ne: "Canceled" }}]};
+  const today = new Date.now();
+  const query = {
+    $and: [
+      { psid: sender_psid },
+      { checkin: false },
+      { note: { $ne: "Canceled" } },
+    ],
+  };
   const update = {
     $set: { note: "Canceled" },
   };
   const options = { upsert: false };
 
-  Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
-    if (err) console.log(err);
-    else {
-      console.log(doc.value.phone_number);
-  
-      let response1 = {
-        text: "Your reservation has been canceled.",
-      };
-      let response2 = {
-        text: `---Canceled reservation information---
+  Reservation.collection.findOneAndUpdate(
+    query,
+    update,
+    options,
+    function (err, doc) {
+      if (err) console.log(err);
+      else {
+        let response1 = {
+          text: "Your reservation has been canceled.",
+        };
+        let response2 = {
+          text: `---Canceled reservation information---
           \nPhone number: ${doc.value.phone_number}
           \nNumber of people: ${doc.value.people_number}
           \nReserve time: ${doc.value.arrive_at}.`,
-      };
+        };
 
-      // send cancel messages
-      chatBotService.callSendAPI(sender_psid, response1);
-      chatBotService.callSendAPI(sender_psid, response2);
+        // send cancel messages
+        chatBotService.callSendAPI(sender_psid, response1);
+        chatBotService.callSendAPI(sender_psid, response2);
 
-      console.log("Cancel reservation");
+        console.log("Cancel reservation");
+      }
     }
-  });
+  );
 };
 
 module.exports = {

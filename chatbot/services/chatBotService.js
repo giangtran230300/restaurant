@@ -226,6 +226,19 @@ let manageReservation = (sender_psid) => {
   });
 };
 
+let manageCancelReservation = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = template.templateManageCancelReservation();
+
+      await callSendAPI(sender_psid, response);
+      resolve("done");
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   callSendAPI: callSendAPI,
   handleGetStarted: handleGetStarted,
@@ -236,4 +249,5 @@ module.exports = {
   handleComboMenu: handleComboMenu,
   handleDDMenu: handleDDMenu,
   manageReservation: manageReservation,
+  manageCancelReservation: manageCancelReservation,
 };
