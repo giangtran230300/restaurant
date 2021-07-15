@@ -279,39 +279,27 @@ let templateDDMenu = () => {
 };
 
 let templateManageReservation = () => {
-  let response = {
-    attachment: {
-      type: "template",
-      payload: {
-        template_type: "generic",
-        elements: [
-          {
-            title: "Manage reservations",
-            subtitle: "View/Update/Cancel your nearest reservation.",
-            image_url: IMAGE_MENU_DESSERT,
-            buttons: [
-              {
-                type: "postback",
-                title: "View",
-                payload: "LATEST_RESERVATION",
-              },
-              {
-                type: "postback",
-                title: "Update",
-                payload: "UPDATE_RESERVATION",
-              },
-              {
-                type: "postback",
-                title: "Cancel",
-                payload: "CANCEL_RESERVATION",
-              },
-            ],
-          },
-        ],
+  var quick_list = {
+    text: "You can view/update/cancel the nearest reservation.",
+    quick_replies: [
+      {
+        content_type: "text",
+        title: "View",
+        payload: "LATEST_RESERVATION",
       },
-    },
+      {
+        content_type: "text",
+        title: "Update",
+        payload: "UPDATE_RESERVATION",
+      },
+      {
+        content_type: "text",
+        title: "Cancel",
+        payload: "CANCEL_RESERVATION",
+      }
+    ],
   };
-  return response;
+  return quick_list;
 };
 
 let templateManageCancelReservation = () => {
@@ -331,6 +319,13 @@ let templateManageCancelReservation = () => {
     ],
   };
   return quick_list;
+};
+
+let noCancelReservation = () => {
+  let response = {
+   "text": "No."
+  };
+  return response;
 };
 
 module.exports = {

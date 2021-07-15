@@ -67,16 +67,26 @@ let getWebhook = (req, res) => {
 // Handles messages events
 async function handleMessage(sender_psid, received_message) {
   let response;
-    // Get the payload for the postback
-    let payload = received_message.quick_reply.payload;
+  // Get the payload for the postback
+  let payload = received_message.quick_reply.payload;
 
-    // Set the response based on the postback payload
-   switch (payload) {
+  // Set the response based on the postback payload
+  switch (payload) {
     // Restaurant menu
     case "CANCEL_YES":
       await handleCancelReservation(sender_psid);
       break;
-}};
+    case "LATEST_RESERVATION":
+      await handleViewReservation(sender_psid);
+      break;
+    // case "UPDATE_RESERVATION":
+    //   await handleUpdateReservation(sender_psid, reservation_id);
+    //   break;
+    case "CANCEL_RESERVATION":
+      await chatBotService.manageCancelReservation(sender_psid);
+      break;
+  }
+}
 
 // Handles messaging_postbacks events
 async function handlePostback(sender_psid, received_postback) {
@@ -111,15 +121,6 @@ async function handlePostback(sender_psid, received_postback) {
     // Manage reservation
     case "MANAGE_RESERVATION":
       await chatBotService.manageReservation(sender_psid);
-      break;
-    case "LATEST_RESERVATION":
-      await handleViewReservation(sender_psid);
-      break;
-    // case "UPDATE_RESERVATION":
-    //   await handleUpdateReservation(sender_psid, reservation_id);
-    //   break;
-    case "CANCEL_RESERVATION":
-      await chatBotService.manageCancelReservation(sender_psid);
       break;
     //talk to agent
     case "CARE_HELP":
