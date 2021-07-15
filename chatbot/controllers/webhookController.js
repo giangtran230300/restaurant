@@ -236,7 +236,7 @@ let handleReservationData = async (req, res) => {
     const customerName = body.customerName;
     const phoneNumber = body.phoneNumber;
     const peopleNumber = body.peopleNumber;
-    const reserveDate = body.reserveDate;
+    const reserveDate = ISODate(body.reserveDate);
     const reserveTime = body.reserveTime;
     var reserveAt = reserveDate.concat(" ", reserveTime);
     const note = body.note;
