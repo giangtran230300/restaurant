@@ -125,7 +125,7 @@ async function handlePostback(sender_psid, received_postback) {
     //   await handleUpdateReservation(sender_psid, reservation_id);
     //   break;
     case "CANCEL_RESERVATION":
-      await handleViewReservation(sender_psid);
+      await handleCancelReservation(sender_psid);
       break;
     //talk to agent
     case "CARE_HELP":
