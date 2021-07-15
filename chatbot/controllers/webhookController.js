@@ -379,7 +379,7 @@ let handleCancelReservation = (sender_psid) => {
   Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
     if (err) console.log(err);
     else {
-      console.log(doc);
+      console.log("Updated reservation" + doc);
     
       let response2 = {
         text: `---Canceled reservation information---
