@@ -374,7 +374,7 @@ let handleCancelReservation = (sender_psid) => {
   let response1 = {
     text: "Your reservation has been canceled.",
   };
-  chatBotService.callSendAPI(doc.psid, response1);
+  chatBotService.callSendAPI(sender_psid, response1);
 
   Reservation.collection.findOneAndUpdate(query, update, options, function (err, doc) {
     if (err) console.log(err);
