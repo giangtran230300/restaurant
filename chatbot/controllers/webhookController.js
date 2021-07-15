@@ -389,7 +389,6 @@ module.exports = {
   getWebhook: getWebhook,
   handleMessage: handleMessage,
   handlePostback: handlePostback,
-  callSendAPI: callSendAPI,
   messengerProfile: messengerProfile,
   persistentMenu: persistentMenu,
   handleReservationData: handleReservationData,
