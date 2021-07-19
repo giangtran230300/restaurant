@@ -280,23 +280,23 @@ let templateDDMenu = () => {
 
 let templateManageReservation = () => {
   var quick_list = {
-    text: "You can view/update/cancel the nearest reservation.",
+    text: "Choose a reservation",
     quick_replies: [
       {
         content_type: "text",
-        title: "View",
+        title: "15-07-2021 19:50",
         payload: "LATEST_RESERVATION",
       },
       {
         content_type: "text",
-        title: "Update",
+        title: "16-07-2021 19:50",
         payload: "UPDATE_RESERVATION",
       },
-      {
-        content_type: "text",
-        title: "Cancel",
-        payload: "CANCEL_RESERVATION",
-      }
+      // {
+      //   content_type: "text",
+      //   title: "Cancel",
+      //   payload: "CANCEL_RESERVATION",
+      // }
     ],
   };
   return quick_list;

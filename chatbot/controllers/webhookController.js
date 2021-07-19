@@ -3,7 +3,6 @@ const express = require("express");
 const request = require("request");
 const chatBotService = require("../services/chatBotService");
 const reservationController = require("../controllers/reservationController");
-var router = express.Router();
 
 // db
 var Reservation = require("../models/booking");
@@ -241,9 +240,6 @@ let handleReservationData = async (req, res) => {
     var reserveAt = reserveDate.concat(" ", reserveTime);
     const note = body.note;
 
-    console.log(reserveDate);
-    console.log(reserveTime);
-    console.log(reserveAt);
     let response1 = {
       text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
     };
@@ -312,8 +308,8 @@ let handleViewReservation = (sender_psid) => {
     $and: [
       { psid: sender_psid },
       { checkin: false },
-      { note: { $ne: "Canceled" } },
-    ],
+      { note: { $ne: "Canceled" } }
+    ]
   };
   const options = { upsert: false };
 
@@ -342,8 +338,81 @@ let handleViewReservation = (sender_psid) => {
   });
 };
 
-let handleUpdateReservation = (sender_psid) => {
-  //const query = {$and: [{'psid': sender_psid}, { '_id': reservation_id }]};;
+let handleUpdateReservation = async (req, res) => {
+  try {
+    var body = req.body;
+
+    const psid = body.psid;
+    let user = await chatBotService.getUserName(psid);
+    const customerName = body.customerName;
+    const phoneNumber = body.phoneNumber;
+    const peopleNumber = body.peopleNumber;
+    const reserveDate = body.reserveDate;
+    const reserveTime = body.reserveTime;
+    var reserveAt = reserveDate.concat(" ", reserveTime);
+    const note = body.note;
+
+    let response1 = {
+      text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
+    };
+
+    let response2 = {
+      text: `---Reservation information---
+        \nName: ${customerName}
+        \nPhone number: ${phoneNumber}
+        \nNumber of people: ${peopleNumber}
+        \nReserve date: ${reserveDate}
+        \nReserve time: ${reserveTime}
+        \nNote: ${note}.`,
+    };
+
+    // confirm message
+    await chatBotService.callSendAPI(psid, response1);
+    await chatBotService.callSendAPI(psid, response2);
+
+    // save to db
+    var reservation = new Reservation({
+      psid: psid,
+      name: customerName,
+      arrive_at: reserveAt,
+      phone_number: phoneNumber,
+      people_number: peopleNumber,
+      note: note,
+    });
+
+    reservation.save((err, doc) => {
+      if (err) console.log(err);
+      else console.log("Reservation created.");
+    });
+
+    const query = { PhoneNumber: phoneNumber };
+    const update = {
+      $set: {
+        "CustomerName.FirstName": user.firstName,
+        "CustomerName.LastName": user.lastName,
+        PhoneNumber: phoneNumber,
+      },
+    };
+    const options = { upsert: true };
+
+    Customer.collection.findOneAndUpdate(
+      query,
+      update,
+      options,
+      function (err, doc) {
+        if (err) console.log(err);
+        else console.log("Customer saved.");
+      }
+    );
+
+    return res
+      .status(200)
+      .json({ message: "Get reservation data successfully." });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Error get reservation data: ", error });
+  }
 };
 
 let handleCancelReservation = (sender_psid) => {
