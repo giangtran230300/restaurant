@@ -316,12 +316,8 @@ let handleViewReservation = (sender_psid) => {
   Reservation.collection.findOne(query, options, function (err, doc) {
     if (err) console.log(err);
     else {
-      let response1 = {
-        text: "Here is your latest reservation:",
-      };
-
-      let response2 = {
-        text: `---Reservation information---
+      let response = {
+        text: `---Reservation created at ${doc.created_at}---
           \nPhone number: ${doc.phone_number}
           \nNumber of people: ${doc.people_number}
           \nReserve time: ${doc.arrive_at}
@@ -329,8 +325,7 @@ let handleViewReservation = (sender_psid) => {
       };
 
       // send reservation messages
-      chatBotService.callSendAPI(sender_psid, response1);
-      chatBotService.callSendAPI(sender_psid, response2);
+      chatBotService.callSendAPI(sender_psid, response);
 
       console.log(doc);
       console.log("send reservation to view.");
