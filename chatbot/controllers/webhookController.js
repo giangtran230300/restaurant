@@ -241,11 +241,11 @@ let handleReservationData = async (req, res) => {
     const note = body.note;
 
     let response1 = {
-      text: "You have made a reservation. We are waiting to see you at our restaurant <3.",
+      text: "You have update your reservation at 15-07-2021 19:50.",
     };
 
     let response2 = {
-      text: `---Reservation information---
+      text: `---Update information---
         \nName: ${customerName}
         \nPhone number: ${phoneNumber}
         \nNumber of people: ${peopleNumber}
