@@ -49,27 +49,18 @@ app.post('/booking', function (req, res) {
 		if (err) throw err;
 		console.log("Record inserted Successfully");
 
-	});
+    });
 
-    const output = `
-     <p> You have a new contact request</p >
-        <h3> Reservation Details</h3>
-    <ul>
-        <li>Name: $(req.body.name)</li>
-        <li>Email: $(req.body.email)</li>
-        <li>Phone number: $(req.body.phone_number)</li>
-        <li>Number of people: $(req.body.people_number)</li>
-        <li>Arrive at: $(req.body.arrive_at)</li>
-    </ul>
-        
-    `;
+    
+
+    
 
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // true for 465, false for other ports
+        port: 465,
+        secure: true, // true for 465, false for other ports
         auth: {
-            user: 'huonggiangtranthi1234@gmail.com', 
+            user: 'bresrestaurant@gmail.com', 
             pass: 'MHoang290808', // generated ethereal password
         },
         tls: {
@@ -79,26 +70,30 @@ app.post('/booking', function (req, res) {
 
     // send mail with unicode symols
     let mailOptions = {
-        from: '"brestaurant" <huonggiangtranthi1234@gmail.com>', // sender address
+        from: '"brestaurant" <bresrestaurant@gmail.com>', // sender address
         to: email, // list of receivers
         subject: "Hello this is bRES", // Subject line
         text: "Reservation of bRES", // plain text body
-        html: output // html body
+        html: '<p>You have got a new booking</b><ul><li>Username:' + req.body.name + '</li><li>Email:' + req.body.email + '</li><li>phone_number:' + req.body.phone_number + '</li><li>Number of people:' + req.body.people_number + '</li><li>Arrive at:' + req.body.arrive_at + '</li></ul>' // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            return console.log(error);
+            console.log(error);
+            res.redirect('html/booknotlogin.html');
         }
 
+        else {
+            console.log("Message sent: %s", info.messageId);
 
-        console.log("Message sent: %s", info.messageId);
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+            return res.redirect('html/book_success.html');
+        }
 
     });
-    return res.redirect({ msg: 'Email has been sent, please check' }, 'html/book_success.html');
+    
 
 })
 

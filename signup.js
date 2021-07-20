@@ -31,16 +31,25 @@ app.get('/', function (req, res) {
 
 
 app.post('/signup', function (req, res) {
-    var name = req.body.name;
+    
+    var FirstName = req.body.FirstName;
+    var LastName = req.body.LastName;
+    
     var email = req.body.email;
     var password = req.body.password;
     var number = req.body.number;
+    var Gender = req.body.Gender;
 
     var data = {
-        "name": name,
+        "CustomerName": [{
+            "FirstName": FirstName,
+            "LastName": LastName
+        }],
         "email": email,
         "password": password,
-        "number": number
+        "number": number,
+        "Gender": Gender
+
     }
     db.collection('restaurantusers').insertOne(data, function (err, collection) {
         if (err) throw err;
@@ -48,23 +57,13 @@ app.post('/signup', function (req, res) {
 
     });
 
-    const output = `
-     <p> You have a new contact request</p >
-        <h3> Contact Details</h3>
-    <ul>
-        <li>Name: $(req.body.name)</li>
-        <li>Email: $(req.body.email)</li>
-        <li>Phone number: $(req.body.number)</li>
-    </ul>
-        
-    `;
 
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-            customer: 'huonggiangtranthi1234@gmail.com', // generated ethereal customer
+            user: 'bresrestaurant@gmail.com', // generated ethereal customer
             pass: 'MHoang290808', // generated ethereal password
         },
         tls: {
@@ -74,11 +73,11 @@ app.post('/signup', function (req, res) {
 
     // send mail with unicode symols
     let mailOptions = {
-        from: '"brestaurant" <huonggiangtranthi1234@gmail.com>', // sender address
+        from: '"brestaurant" <bresrestaurant@gmail.com>', // sender address
         to: email, // list of receivers
         subject: "Hello ✔", // Subject line
         text: "Hello world?", // plain text body
-        html: output, // html body
+        html: '<p>You have got a new account on bRES website</b><ul><li>Username:' + req.body.name + '</li><li>Email:' + req.body.email + '</li><li>phone_number:' + req.body.phone_number + '</li><li>Number of people:' + req.body.people_number + '</li><li>Arrive at:' + req.body.arrive_at + '</li></ul>', // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
@@ -86,16 +85,19 @@ app.post('/signup', function (req, res) {
             return console.log(error);
         }
 
+        else {
+            console.log("Message sent: %s", info.messageId);
 
-        console.log("Message sent: %s", info.messageId);
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+            return res.redirect('html/signup_success.html');
+        }
         
 
 
     });
-    return res.redirect({ msg: 'Email has been sent' }, 'html/signup_success.html');
+    
 })
 
 	.listen(3000)

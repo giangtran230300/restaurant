@@ -64,30 +64,42 @@
 
         </div>
         <div class="container">
-            <h1>Register</h1>
+            
             <h6>Please fill in this form to create an account.</h6>
             {{msg}}
-            <form action="/signup" method="post">
-                <hr>
+        <form action="/signup" method="post">
+            <hr>
 
-                <label for="name"><b>customer name</b></label>
-                <input type="text" placeholder="customer name" name="name" id="name" required>
+            
+            <label for="FirstName"><b>First name</b></label>
+            <input type="text" placeholder="First name" name="FirstName" id="FirstName" required>
+            <label for="LastName"><b>Last name</b></label>
+            <input type="text" placeholder="Last name" name="LastName" id="LastName" required>
 
-                <label for="number"><b>Phone number</b></label>
-                <input type="text" placeholder="Phone number" name="number" id="number" required>
+            <label for="Gender"><b>Gender:</b></label>
+            <input type="radio" name="Gender" id="Gender" value="Male" />
+            <label for="Gender"> Male</label>
+            <input type="radio" name="Gender" id="Gender" value="Female" />
+            <label for="Gender"> Female</label>
+            <input type="radio" name="Gender" id="Gender" value="Others" />
+            <label for="Gender"> Others</label> <br />
+            <br />
 
-                <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter email" name="email" id="email" required>
+            <label for="number"><b>Phone number</b></label>
+            <input type="text" placeholder="Phone number" name="number" id="number" required>
 
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" id="password" required>
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter email" name="email" id="email" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
 
-                <hr>
-                <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+            <hr>
+            <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
-                <input type="submit" class="registerbtn" name="submitDetails" value="Submit"/>
-            </form>
+            <input type="submit" class="registerbtn" name="submitDetails" value="Submit" />
+        </form>
                 
         </div>
         

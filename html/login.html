@@ -63,26 +63,25 @@
         </div>
         <div class="container">
             <h1>Log in</h1>
-            
-            <hr>
+            <form action="/login" method="post">
+                <hr>
 
-            <label for="name"><b>User name</b></label>
-            <input type="text" placeholder="User name" name="name" id="name" required>
-
-            <label for="password"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                <label for="PhoneNumber"><b>Phone Number</b></label>
+                <input type="text" placeholder="Phone Number" name="PhoneNumber" id="PhoneNumber" required /><br />
 
 
-            <hr>
-            <p>Forget password? <a href="#">Terms & Privacy</a>.</p>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-            <button type="submit" class="loginbtn">Log in</button>
-            <!--<script type="text/javascript">
-             document.getElementById("myButton").onclick = function () {
-                  location.href = "";
-             };
-     </script>-->
-        </div>
+
+                <hr>
+                <p>Forget password? <a href="#">Terms & Privacy</a>.</p>
+
+                <button type="submit" class="loginbtn">Log in</button>
+            </form>
+                
+
+</div>
 
         <div class="containersignin">
             <p>Not yet have an account? <a href="signup.html">Sign up</a>.</p>
