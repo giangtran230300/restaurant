@@ -14,16 +14,6 @@
     <script src="/js/reserve.js"></script>
   </head>
   <body>
-
-    <script type="text/javascript">
-      $(function () {  
-      $("#datepicker").datepicker({         
-      autoclose: true,         
-      todayHighlight: true 
-      }).datepicker('update', new Date());
-      });
-    </script>
-
     <!-- <form action="/reserve-ajax" method="post" id="form-reserve"> -->
     <div class="container fix-height">
       <div class="row">
@@ -107,5 +97,15 @@
       </div>
     </div>
   </form>  
+  
+  <script type="text/javascript">
+    $(function () {  
+      $("#datepicker").datepicker({         
+      autoclose: true,         
+      todayHighlight: true 
+      }).datepicker('update', new Date());
+    });
+  </script>
+
   </body>
 </html>
