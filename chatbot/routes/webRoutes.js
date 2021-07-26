@@ -7,7 +7,7 @@ var router = express.Router();
 
 let initRoutes = (app) => {
   router.get("/", function (req, res) {
-    res.sendFile("tryrest.html", { root: "./chatbot/restaurant/html" });
+    res.sendFile("tryrest.html", { root: "./chatbot/views/html" });
   });
 
   // webhook routes
@@ -18,7 +18,7 @@ let initRoutes = (app) => {
   router.post("/webhook/persistent-menu", webhookController.persistentMenu);
 
   router.get("/reserve", function (req, res) {
-    res.sendFile("reserve.html", { root: "./chatbot/restaurant" });
+    res.sendFile("reserve.html", { root: "./chatbot/views" });
   });
   router.post("/reserve-post", webhookController.handleReservationData);
   

@@ -33,7 +33,7 @@ app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
 	res.set('Access-Control-Allow-Origin', '*');
-	return res.redirect('html/booknotlogin.html');
+	return res.redirect('views/html/booknotlogin.html');
 })
 
 
@@ -86,7 +86,7 @@ app.post('/booking', function (req, res) {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
-            res.redirect('html/booknotlogin.html');
+            res.redirect('views/html/booknotlogin.html');
         }
 
         else {
@@ -117,7 +117,7 @@ app.post('/booking', function (req, res) {
 
                 });
 
-            return res.redirect('html/book_success.html');
+            return res.redirect('views/html/book_success.html');
         }
 
     });
