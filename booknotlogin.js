@@ -1,8 +1,14 @@
 ﻿var express = require("express");
 var bodyParser = require("body-parser");
 const nodemailer = require('nodemailer');
+const Nexmo = require('nexmo');
 
 var app = express();
+
+const nexmo = new Nexmo({
+    apiKey: 'e824a441',
+    apiSecret: 'nfqbcxv53ZmDewbo'
+})
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://root:root@cluster0.fmgyw.mongodb.net/bRES?retryWrites=true&w=majority', {
@@ -88,6 +94,28 @@ app.post('/booking', function (req, res) {
 
             console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
+            let text = 'You have got a new booking:'
+            'Username:' + req.body.name +
+                'Email:' + req.body.email +
+                'phone_number:' + req.body.phone_number +
+                'Number of people:' + req.body.people_number +
+                'Arrive at:' + req.body.arrive_at; // html body
+
+            nexmo.message.sendSms(
+                '0865001140', phone_number, text, { type: 'unicode' },
+                (err, responseData) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        if (responseData.messages[0]['status'] === "0") {
+                            console.log("Message sent successfully.");
+                        } else {
+                            console.log(`Message failed with error: ${responseData.messages[0]['error-text']}`);
+                        }
+                    }
+
+                });
 
             return res.redirect('html/book_success.html');
         }
