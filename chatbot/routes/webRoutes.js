@@ -18,7 +18,7 @@ let initRoutes = (app) => {
   router.post("/webhook/persistent-menu", webhookController.persistentMenu);
 
   router.get("/reserve", function (req, res) {
-    res.sendFile("reserve.html", { root: "./chatbot/views" });
+    res.sendFile("reserve.html", { root: "./chatbot/views/html" });
   });
   router.post("/reserve-post", webhookController.handleReservationData);
   
