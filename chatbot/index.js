@@ -14,7 +14,11 @@ app.use(express.urlencoded({extended: true}))
 
 // JS here
 app.set('view engine', 'ejs');
+<<<<<<< HEAD
 app.use(express.static('./chatbot/views'));
+=======
+app.use(express.static('./chatbot/restaurant'));
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6
 
 // routes
 webRoutes(app);

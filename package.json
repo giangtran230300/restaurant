@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "tryrest",
   "version": "1.0.0",
   "description": "booking restaurant website",
@@ -44,4 +45,29 @@
     "url": "https://github.com/giangtran230300/restaurant/issues"
   },
   "homepage": "https://github.com/giangtran230300/restaurant#readme"
+=======
+  "name": "restaurant",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon chatbot/index.js"
+  },
+  "author": "mia",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.10",
+    "mongoose": "^5.13.0",
+    "nodemon": "^2.0.9",
+    "request": "^2.88.2"
+  },
+  "engines": {
+    "node": "14.15.1"
+  }
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6
 }

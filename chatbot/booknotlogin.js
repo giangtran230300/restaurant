@@ -33,7 +33,11 @@ app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
 	res.set('Access-Control-Allow-Origin', '*');
+<<<<<<< HEAD
 	return res.redirect('views/html/booknotlogin.html');
+=======
+	return res.redirect('html/booknotlogin.html');
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6
 })
 
 
@@ -86,7 +90,11 @@ app.post('/booking', function (req, res) {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
+<<<<<<< HEAD
             res.redirect('views/html/booknotlogin.html');
+=======
+            res.redirect('html/booknotlogin.html');
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6
         }
 
         else {
@@ -117,7 +125,11 @@ app.post('/booking', function (req, res) {
 
                 });
 
+<<<<<<< HEAD
             return res.redirect('views/html/book_success.html');
+=======
+            return res.redirect('html/book_success.html');
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6
         }
 
     });
@@ -128,4 +140,8 @@ app.post('/booking', function (req, res) {
 	.listen(3000)
 
 
+<<<<<<< HEAD
 console.log("server listening at port 3000");
+=======
+console.log("server listening at port 3000");
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6

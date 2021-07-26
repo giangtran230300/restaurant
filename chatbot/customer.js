@@ -35,7 +35,11 @@ app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
+<<<<<<< HEAD
     return res.redirect('views/html/customer.html');
+=======
+    return res.redirect('html/customer.html');
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6
 })
 
 
@@ -55,8 +59,16 @@ app.get('/logout', (req, res, next) => {
 
     req.session = null;
 
+<<<<<<< HEAD
     res.redirect("views/html/tryrest.html");
 });
 
 app.listen(3000);
 console.log('Connect to host!');
+=======
+    res.redirect("html/tryrest.html");
+});
+
+app.listen(3000);
+console.log('Connect to host!');
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6

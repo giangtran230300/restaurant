@@ -37,7 +37,11 @@ app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
+<<<<<<< HEAD
     return res.redirect('views/html/login.html');
+=======
+    return res.redirect('html/login.html');
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6
 })
 
 /**
@@ -57,16 +61,28 @@ app.post('/login', function (req, res) {
         }
         return res.status(200).send;
     })
+<<<<<<< HEAD
     return res.redirect( 'views/html/customer.html');
+=======
+    return res.redirect( 'html/customer.html');
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6
 });
 
 app.get('/logout', (req, res) => {
     req.session.destroy(function (err) {
+<<<<<<< HEAD
         res.redirect('views/html/tryrest.html'); 
+=======
+        res.redirect('html/tryrest.html'); 
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6
     });
 
 });
 
 
 app.listen(3000);
+<<<<<<< HEAD
 console.log('Connect to host!');
+=======
+console.log('Connect to host!');
+>>>>>>> 61c64c65357cb21b048c7fc51a2a10c69f9c0be6

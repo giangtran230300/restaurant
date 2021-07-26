@@ -1,0 +1,125 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reserve Service</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Load custom Javascript and CSS-->
+    <script src="/js/reserve.js"></script>
+  </head>
+  <body>
+    <script>
+      function dateFormat(){
+        d=new Date(document.getElementById("dt").value);
+        dt=d.getDate();
+        mn=d.getMonth();
+        mn++;
+        yy=d.getFullYear();
+        document.getElementById("ndt").value=dt+"/"+mn+"/"+yy
+        document.getElementById("ndt").hidden=false;
+        document.getElementById("dt").hidden=true;
+      }
+    </script>
+
+    <!-- <form action="/reserve-ajax" method="post" id="form-reserve"> -->
+    <div class="container fix-height">
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center mt-3">
+            <span class="title"><h5>Update reservation</h5></span>
+          </div>
+          <input type="text" id="psid" hidden />
+          <div class="form-group">
+            <label for="customerName">Name:</label>
+            <input
+              type="text"
+              id="customerName"
+              class="form-control"
+              placeholder="Tran Ngoc Mai"
+            />
+            <div class="invalid-feedback">
+              Please fill out your name.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phoneNumber">Phone number:</label>
+            <input
+              type="text"
+              id="phoneNumber"
+              class="form-control"
+              placeholder="0372114930"
+            />
+            <div class="invalid-feedback">
+              Please fill out your phone number.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="peopleNumber"
+              >Number of people:</label
+            >
+            <input
+              type="text"
+              id="peopleNumber"
+              class="form-control"
+              placeholder="2"
+            />
+            <div class="invalid-feedback">
+              Please fill out your reserve time.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reserveDate"
+              >Reserve date:</label
+            >
+            <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy"> 
+              <input id="reserveDate" class="form-control" readonly="" type="text"  style="background-color:#fff;"
+              placeholder="15-07-2021"> <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
+            </div>
+            <div class="invalid-feedback">
+              Please choose your reserve date.
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reserveTime"
+              >Reserve time:</label
+            >
+            <input
+              type="time"
+              id="reserveTime"
+              class="form-control"
+              placeholder="19:50"
+            />
+            <div class="invalid-feedback">
+              Please fill out your reserve time.
+            </div>
+          </div> 
+          <div class="form-group">
+            <label for="phoneNumber">Note</label>
+            <input
+              type="text"
+              id="note"
+              class="form-control"
+            />
+          </div>
+          <button class="btn btn-primary" id="btnReserve">Update</button>
+        </div>
+      </div>
+    </div>
+  </form>  
+
+  <script type="text/javascript">
+    $(function () {  
+    $("#datepicker").datepicker({         
+    autoclose: true,         
+    todayHighlight: true 
+    }).datepicker('update', new Date());
+    });
+    </script>
+
+  <link rel="stylesheet prefetch" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css"><script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+  </body>
+</html>
