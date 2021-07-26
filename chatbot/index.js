@@ -14,7 +14,7 @@ app.use(express.urlencoded({extended: true}))
 
 // JS here
 app.set('view engine', 'ejs');
-app.use(express.static('./chatbot/restaurant'));
+app.use(express.static('./chatbot/views'));
 
 // routes
 webRoutes(app);
