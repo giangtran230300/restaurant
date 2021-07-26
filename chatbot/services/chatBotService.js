@@ -118,7 +118,7 @@ let getUserName = (sender_psid) => {
           let user = {
             firstName: body.first_name,
             lastName: body.last_name,
-            username: `${body.first_name} ${body.last_name}`
+            username: `${body.first_name} ${body.last_name}`,
           };
           resolve(user);
         } else {
@@ -133,11 +133,27 @@ let handleGetStarted = (sender_psid) => {
   return new Promise(async (resolve, reject) => {
     try {
       let user = await getUserName(sender_psid);
-      let response1 = { text: `Hello ${user.username}. Wellcome to our restaurant` };
+      let response1 = {
+        text: `Hello ${user.username}. Wellcome to our restaurant`,
+      };
       let response2 = template.templpateGetStartedButton();
 
       await callSendAPI(sender_psid, response1);
       await callSendAPI(sender_psid, response2);
+      resolve("done");
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
+let handleReStarted = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response = template.templpateGetStartedButton();
+
+      await callSendAPI(sender_psid, response);
+
       resolve("done");
     } catch (e) {
       reject(e);
@@ -242,6 +258,7 @@ let manageCancelReservation = (sender_psid) => {
 module.exports = {
   callSendAPI: callSendAPI,
   handleGetStarted: handleGetStarted,
+  handleReStarted: handleReStarted,
   getUserName: getUserName,
   handleMainMenu: handleMainMenu,
   handleCareHelp: handleCareHelp,

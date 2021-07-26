@@ -121,6 +121,9 @@ async function handlePostback(sender_psid, received_postback) {
 
     // Chatbot start
     case "RESTART":
+      await chatBotService.handleReStarted(sender_psid);
+      break;
+
     case "GET_STARTED":
       await chatBotService.handleGetStarted(sender_psid);
       break;
@@ -181,7 +184,7 @@ let persistentMenu = async (req, res) => {
         call_to_actions: [
           {
             type: "postback",
-            title: "Start conversation",
+            title: "Start menu",
             payload: "RESTART",
           },
           {
