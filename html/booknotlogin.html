@@ -1,0 +1,98 @@
+<html>
+<head>
+    <title> Restaurant</title>
+    <link rel="stylesheet" type="text/css" href="../css/booknotlogin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+</head>
+<body>
+
+    <div class="box">
+        <div class="barmanu">
+
+            <div class="icons">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+                <a href="https://www.facebook.com/My-Restaurant-page-102166445415232"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+            </div>
+
+            <div class="l">
+                <ul class="list">
+                    <li><a href="login.html">Log in</a> </li>
+                    <li><a href="signup.html">Sign up</a></li>
+                    <li><a href="">Account</a></li>
+                    <li><i class="fa fa-shopping-cart"></i></li>
+
+                </ul>
+                <h2>3</h2>
+            </div>
+            <div class="dark"></div>
+            <div class="menu">
+                <ul class="m">
+                    <li><a href="tryrest.html">Home</a></li>
+                    <li>
+                        <a href="">Menu <i class="fa fa-angle-down"></i></a>
+                        <ul class="sub">
+                            <li><a href="Foodmenu.html">Food</a></li>
+                            <li>Drink</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href=""><font>Booking</font><i class="fa fa-angle-down"></i></a>
+                        <ul class="sub">
+                            <li>
+                            <a href="booknotlogin.html">Now</a>
+                            </li>
+                            <li>Reservation</li>
+                        </ul>
+                    </li>
+
+                    <li><a href="">Contact</a></li>
+                </ul>
+            </div>
+
+
+
+        </div>
+        <div class="container">
+            <h1>Book Now</h1>
+            <h6>Please fill in this form to book without account.</h6>
+
+            <form action="/booking" method="post">
+                <hr>
+
+                <label for="phone_number"><b>Phone number</b></label>
+                <input type="text" placeholder="Phone number" name="phone_number" id="phone_number" required>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+                <label for="arrive_at"><b>Date of Reservation</b></label>
+                <input type="datetime-local" placeholder="Enter Reservation time" name="arrive_at" id="arrive_at" required>
+
+                <label for="people_number"><b>Number of people</b></label>
+                <input type="text" placeholder="Number of people" name="people_number" id="people_number" required>
+
+                <hr>
+                <p>By booking without account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                <p1>Already have an account? <a href="login.html">Log in</a>.</p1>
+                <button type="submit" class="bookbtn">Booking</button>
+
+                </form>
+        </div>
+
+        <div class="containerlogin">
+            
+        </div>
+    </div>
+
+</body>
+</html>
+
