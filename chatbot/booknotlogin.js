@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/chatbot'));
 
 app.get('/', function (req, res) {
 	res.set('Access-Control-Allow-Origin', '*');
