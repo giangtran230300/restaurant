@@ -33,7 +33,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use(express.static(__dirname + '/chatbot'));
+app.use(express.static(__dirname ));
 
 app.get('/', function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
