@@ -22,11 +22,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-app.use(express.static(__dirname));
+app.use(express.static('./chatbot/views'));
 
 app.get('/', function (req, res) {
 	res.set('Access-Control-Allow-Origin', '*');
-	return res.redirect('views/html/signup.html');
+	return res.redirect('html/signup.html');
 })
 
 
@@ -91,7 +91,7 @@ app.post('/signup', function (req, res) {
             console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 
-            return res.redirect('views/html/signup_success.html');
+            return res.redirect('html/signup_success.html');
         }
         
 

@@ -31,11 +31,11 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use(express.static(__dirname ));
+app.use(express.static('./chatbot/views'));
 
 app.get('/', function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
-    return res.redirect('views/html/customer.html');
+    return res.redirect('html/customer.html');
 })
 
 
@@ -55,7 +55,7 @@ app.get('/logout', (req, res, next) => {
 
     req.session = null;
 
-    res.redirect("views/html/tryrest.html");
+    res.redirect("html/tryrest.html");
 });
 
 app.listen(3000);
