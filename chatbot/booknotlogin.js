@@ -37,7 +37,7 @@ app.use(express.static('./chatbot/views'));
 
 app.get("/", function (req, res) {
   res.set("Access-Control-Allow-Origin", "*");
-  return res.redirect("html/booknotlogin.html");
+  return res.redirect("./html/booknotlogin.html");
 });
 
 app
@@ -96,7 +96,7 @@ app
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log(error);
-        res.redirect("html/booknotlogin.html");
+        res.redirect("./html/booknotlogin.html");
       } else {
         console.log("Message sent: %s", info.messageId);
 
@@ -135,7 +135,7 @@ app
           }
         );
 
-        return res.redirect("html/book_success.html");
+        return res.redirect("./html/book_success.html");
       }
     });
   }).listen(3000);
