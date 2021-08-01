@@ -37,7 +37,7 @@ app.use(express.static(__dirname + '/chatbot'));
 
 app.get('/', function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
-    return res.redirect('views/html/login.html');
+    return res.redirect('./chatbot/views/html/login.html');
 })
 
 /**
@@ -62,7 +62,7 @@ app.post('/login', function (req, res) {
 
 app.get('/logout', (req, res) => {
     req.session.destroy(function (err) {
-        res.redirect('views/html/tryrest.html'); 
+        res.redirect('./chatbot/views/html/tryrest.html'); 
     });
 
 });
