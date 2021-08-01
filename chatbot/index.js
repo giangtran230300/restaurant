@@ -20,7 +20,7 @@ app.use(express.static('./chatbot/views'));
 webRoutes(app);
 
 // PORT
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log('Express server listening on port', port)
 });

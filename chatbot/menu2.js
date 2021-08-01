@@ -25,7 +25,7 @@ MongoClient.connect(url, {
 
                 console.log(result);
                 app.use(express.static(__dirname + '/chatbot'));
-                app.get('./chatbot/views/html/Foodmenu.html', function (res, req) {
+                app.get('views/html/Foodmenu.html', function (res, req) {
                     var imageURL = req.body.imageURL;
                     var name = req.body.name;
                     var price = req.body.price;
