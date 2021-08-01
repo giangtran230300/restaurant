@@ -33,11 +33,11 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use(express.static('./chatbot/views'));
+app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
-    return res.redirect('./html/login.html');
+    return res.redirect('../html/login.html');
 })
 
 /**
@@ -57,12 +57,12 @@ app.post('/login', function (req, res) {
         }
         return res.status(200).send;
     })
-    return res.redirect( './html/customer.html');
+    return res.redirect( '../html/customer.html');
 });
 
 app.get('/logout', (req, res) => {
     req.session.destroy(function (err) {
-        res.redirect('./html/tryrest.html'); 
+        res.redirect('../html/tryrest.html'); 
     });
 
 });
