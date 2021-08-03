@@ -24,8 +24,8 @@ MongoClient.connect(url, {
             else {
 
                 console.log(result);
-                app.use(express.static('./chatbot/views'));
-                app.get('../html/Foodmenu.html', function (res, req) {
+                app.use(express.static(__dirname));
+                app.get('../views/html/Foodmenu.html', function (res, req) {
                     var imageURL = req.body.imageURL;
                     var name = req.body.name;
                     var price = req.body.price;
@@ -35,7 +35,7 @@ MongoClient.connect(url, {
                         "name": name,
                         "price": price
                     }
-                    res.result('../html/Foodmenu.html');
+                    res.result('../views/html/Foodmenu.html');
                 })
                 
             }

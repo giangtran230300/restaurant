@@ -33,15 +33,16 @@ app.use(
     extended: true,
   })
 );
-app.use(express.static(__dirname));
 
-app.get("/", function (req, res) {
-  res.set("Access-Control-Allow-Origin", "*");
-  return res.redirect("../html/booknotlogin.html");
-});
+app.use(express.static(__dirname ));
+
+app.get('/', function (req, res) {
+    res.set('Access-Control-Allow-Origin', '*');
+    return res.redirect('tryrest/views/html/booknotlogin.html');
+})
 
 app
-  .post("/booking", function (req, res) {
+  .post('/booking', function (req, res) {
     var name = req.body.name;
     var email = req.body.email;
     var arrive_at = req.body.arrive_at;
@@ -96,7 +97,7 @@ app
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log(error);
-        res.redirect("../html/booknotlogin.html");
+        res.redirect("../views/html/booknotlogin.html");
       } else {
         console.log("Message sent: %s", info.messageId);
 
@@ -135,7 +136,7 @@ app
           }
         );
 
-        return res.redirect("../html/book_success.html");
+        return res.redirect("../views/html/book_success.html");
       }
     });
   }).listen(3000);
