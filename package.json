@@ -1,6 +1,9 @@
 {
   "name": "tryrest",
   "version": "1.0.0",
+  "engines": {
+    "node": "^14.17.0"
+  },
   "description": "booking restaurant website",
   "main": "login.js",
   "dependencies": {
@@ -28,6 +31,7 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0"
+
   },
   "devDependencies": {},
   "scripts": {
