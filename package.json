@@ -35,14 +35,15 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "views/html/tryrest.html"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/giangtran230300/restaurant.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "giangtran230300",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/giangtran230300/restaurant/issues"
