@@ -34,7 +34,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "login.js"
+    "start": "app.js"
   },
   "repository": {
     "type": "git",

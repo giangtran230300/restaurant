@@ -34,6 +34,7 @@ app.use(session({
 
 
 app.get('/', function (req, res) {
+    res.set('Access-Control-Allow-Origin', '*');
     return res.redirect(__dirname + 'views/html/customer.html');
 })
 

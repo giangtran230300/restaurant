@@ -251,7 +251,7 @@ hr {
     margin-top: 35px;
 }
 
-p {
+p a{
     color: white;
     opacity: 0.8;
     position: relative;
