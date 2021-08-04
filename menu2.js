@@ -35,7 +35,7 @@ MongoClient.connect(url, {
                         "name": name,
                         "price": price
                     }
-                    res.result('views/html/Foodmenu.html');
+                    res.result(views/html/Foodmenu.html);
                 })
                 
             }

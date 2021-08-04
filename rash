@@ -81,3 +81,69 @@
             </div>
         </div>
             -->
+
+<<controller.js>>
+            
+/**
+ * Go to Add Items page
+ */
+
+router.get('/add-item', (req, res) => {
+    res.render('add-item');
+});
+
+
+router.post('/', (req, res) => {
+    let newItem = new Item({
+        name: req.body.productName,
+        type: req.body.productType,
+        price: req.body.productprice
+    });
+
+    newItem.save()
+        .then(doc => {
+            res.redirect('/')
+        })
+        .catch(err => {
+            console.log('Error: ', err);
+            throw err;
+        })
+});
+
+/**
+ * Go to Update Item page
+ */
+router.get('/update-item/:itemId', (req, res) => {
+    Items.findById(req.params.itemId, (err, item) => {
+        if (err) {
+            console.log(err);
+            throw err
+        }
+        res.render('update-item', { item: item });
+    })
+});
+
+/**
+ * Delete item
+ */
+router.delete('/:itemId', (req, res) => {
+    let itemId = req.params.itemId;
+    Item.findByIdAndDelete(itemId, (err, doc) => {
+        if (err) throw err;
+        res.send(doc)
+    })
+});
+
+/**
+ * Update item
+ */
+router.post('/:itemId', (req, res) => {
+    let itemId = req.params.itemId;
+    Item.findByIdAndUpdate(
+        { _id: itemId },
+        { $set: { name: req.body.itemName, type: req.body.itemType, price: req.body.itemPrice } },
+        { useFindAndModify: false })
+        .then(doc => {
+            res.redirect('/')
+        })
+}); 

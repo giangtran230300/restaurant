@@ -60,5 +60,3 @@ app.get('/logout', (req, res, next) => {
 
 app.listen(3000);
 console.log('Connect to host!');
-
-
