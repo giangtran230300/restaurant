@@ -26,7 +26,7 @@ app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
 	res.set('Access-Control-Allow-Origin', '*');
-	return res.redirect('../views/html/signup.html');
+	return res.redirect('views/html/signup.html');
 })
 
 
@@ -91,7 +91,7 @@ app.post('/signup', function (req, res) {
             console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
             // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 
-            return res.redirect('../views/html/signup_success.html');
+            return res.redirect('views/html/signup_success.html');
         }
         
 
