@@ -25,7 +25,7 @@ MongoClient.connect(url, {
 
                 console.log(result);
                 app.use(express.static(__dirname));
-                app.get('views/html/Foodmenu.html', function (res, req) {
+                app.get(__dirname + 'views/html/Foodmenu.html', function (res, req) {
                     var imageURL = req.body.imageURL;
                     var name = req.body.name;
                     var price = req.body.price;
@@ -35,7 +35,7 @@ MongoClient.connect(url, {
                         "name": name,
                         "price": price
                     }
-                    res.result(views/html/Foodmenu.html);
+                    res.result(__dirname + 'views/html/Foodmenu.html');
                 })
                 
             }

@@ -1,4 +1,4 @@
-﻿var express = require("express");
+var express = require("express");
 var bodyParser = require("body-parser");
 const nodemailer = require('nodemailer');
 const Nexmo = require('nexmo');
@@ -12,61 +12,59 @@ const nexmo = new Nexmo({
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://root:root@cluster0.fmgyw.mongodb.net/bRES?retryWrites=true&w=majority', {
-	useNewUrlParser: true,
-	useFindAndModify: false,
-	useUnifiedTopology: true,
-	useCreateIndex: true
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex: true
 });
 
 var db = mongoose.connection;
 db.on('error', console.log.bind(console, "connection error"));
 db.once('open', function (callback) {
-	console.log("connection succeeded");
+    console.log("connection succeeded");
 })
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-	extended: true
+    extended: true
 }));
-app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
-	res.set('Access-Control-Allow-Origin', '*');
-	return res.redirect('views/html/booknotlogin.html');
+    return res.redirect(__dirname + 'views/html/booknotlogin.html');
 })
 
 
 app.post('/booking', function (req, res) {
-	var name = req.body.name;
-	var email = req.body.email;
-	var arrive_at = req.body.arrive_at;
-	var phone_number = req.body.phone_number;
-	var people_number = req.body.people_number;
+    var name = req.body.name;
+    var email = req.body.email;
+    var arrive_at = req.body.arrive_at;
+    var phone_number = req.body.phone_number;
+    var people_number = req.body.people_number;
 
-	var data = {
-		"name": name,
-		"email": email,
-		"people_number": people_number,
-		"phone_number": phone_number,
-		"arrive_at": arrive_at
-	}
-	db.collection('bookings').insertOne(data, function (err, collection) {
-		if (err) throw err;
-		console.log("Record inserted Successfully");
+    var data = {
+        "name": name,
+        "email": email,
+        "people_number": people_number,
+        "phone_number": phone_number,
+        "arrive_at": arrive_at
+    }
+    db.collection('bookings').insertOne(data, function (err, collection) {
+        if (err) throw err;
+        console.log("Record inserted Successfully");
 
     });
 
-    
 
-    
+
+
 
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-            user: 'bresrestaurant@gmail.com', 
+            user: 'bresrestaurant@gmail.com',
             pass: 'MHoang290808', // generated ethereal password
         },
         tls: {
@@ -86,7 +84,7 @@ app.post('/booking', function (req, res) {
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error);
-            res.redirect('views/html/booknotlogin.html');
+            res.redirect(__dirname + 'views/html/booknotlogin.html');
         }
 
         else {
@@ -117,15 +115,15 @@ app.post('/booking', function (req, res) {
 
                 });
 
-            return res.redirect('views/html/book_success.html');
+            return res.redirect(__dirname + 'views/html/book_success.html');
         }
 
     });
-    
+
 
 })
 
-	.listen(3000)
+    .listen(3000)
 
 
 console.log("server listening at port 3000");
