@@ -1,9 +1,6 @@
 {
   "name": "tryrest",
   "version": "1.0.0",
-  "engines": {
-    "node": "^14.17.0"
-  },
   "description": "booking restaurant website",
   "main": "login.js",
   "dependencies": {
@@ -22,28 +19,28 @@
     "handlebars": "^4.7.7",
     "lodash": "^4.17.21",
     "mongodb": "^3.6.9",
-    "mongoose": "^5.13.0",
+    "mongoose": "^5.13.5",
     "mongoose-paginate-v2": "^1.3.18",
     "morgan": "^1.10.0",
     "nexmo": "^2.9.1",
+    "node": "^16.6.1",
     "nodemailer": "^6.6.3",
     "nodemon": "^2.0.12",
+    "npm": "^6.14.13",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.1.0"
-
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "login.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/giangtran230300/restaurant.git"
   },
   "keywords": [],
-  "author": "giangtran230300",
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/giangtran230300/restaurant/issues"
